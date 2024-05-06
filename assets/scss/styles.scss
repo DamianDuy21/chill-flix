@@ -577,18 +577,19 @@ body {
 }
 
 .loading-theme {
-    position: absolute;
-    top: 50vh;
+    position: fixed;
+    top: 96px;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    // height: calc(50vh);
-    z-index: 998;
+    z-index: 1000;
     background-color: var(--surface);
+    // background-color: red;
     display: none;
 
     &::before {
         position: absolute;
-        top: 0;
+        top: calc(50% - 18px);
         left: calc(50% - 18px);
         content: "";
         width: 36px;
@@ -749,15 +750,15 @@ body {
                 width: 96px;
                 border-radius: var(--radius-8);
                 flex-shrink: 0;
-                opacity: 0.6;
+                filter: brightness(0.6);
                 transform: var(--transition-short);
 
                 &:hover {
-                    opacity: 0.8;
+                    filter: brightness(0.8);
                 }
 
                 &.active {
-                    opacity: 1;
+                    filter: brightness(1);
                     box-shadow: var(--shadow-1);
                 }
             }
@@ -775,12 +776,12 @@ body {
             .movie-card {
                 position: relative;
                 min-width: 200px;
-                opacity: 0.8;
+                filter: brightness(0.8);
                 transition: var(--transition-short);
 
                 &:hover,
                 :focus-visible {
-                    opacity: 1;
+                    filter: brightness(1);
                 }
 
                 .card-banner {
@@ -1039,17 +1040,17 @@ body {
     }
 
     .episode-btn {
-        opacity: 0.6;
+        filter: brightness(0.6);
         transition: var(--transition-short);
         min-width: max-content !important;
 
         &:hover,
         :focus-visible {
-            opacity: 0.8;
+            filter: brightness(0.8);
         }
 
         &.active {
-            opacity: 1;
+            filter: brightness(1);
         }
     }
 }
@@ -1084,11 +1085,6 @@ body {
 
             }
         }
-
-        .slider-control {
-            left: calc(100% - 512px);
-
-        }
     }
 
 
@@ -1118,7 +1114,12 @@ body {
         .heading {
             font-size: var(--fs-heading);
         }
+
+        .episode-list {
+            max-width: 722px;
+        }
     }
+
 
     //HEADER
     .header {
@@ -1153,13 +1154,13 @@ body {
                 bottom: 194px !important;
                 transform: translateY(55%);
                 left: 50px;
-                max-width: 384px;
+                max-width: 45%;
 
             }
         }
 
         .slider-control {
-            left: calc(100% - 272px);
+            left: calc(60%);
 
         }
     }
@@ -1216,26 +1217,70 @@ body {
             width: 360px;
         }
 
-        // .menu-btn {
-        //     display: none;
-        // }
+        .menu-btn {
+            display: none;
+        }
     }
 
-    // .sidebar {
-    //     visibility: visible;
-    //     left: 0px;
-    //     border-top: 0;
-    //     // background-color: var(--surface);
-    //     max-width: 224px;
-    // }
+    .sidebar {
+        visibility: visible;
+        left: 0px;
+        border-top: 0;
+        // background-color: var(--surface);
+        max-width: 224px;
+    }
 
     //HOME PAGE
     .container {
-        padding-inline: 36px;
-        // margin-left: 224px;
+        margin-left: 224px;
     }
 
     .footer {
-        // margin-left: 224px;
+        margin-left: 224px;
+    }
+
+    //watch movie page
+    .watch-movie-page {
+        .episode-list {
+            max-width: 1120px;
+        }
+
+        .header {
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        .sidebar {
+            position: fixed;
+            background-color: var(--background);
+            top: 96px;
+            bottom: 0;
+            left: -340px;
+            max-width: 340px;
+            width: 100%;
+            max-width: 256px;
+            border-top: 1px solid var(--banner-background);
+            overflow: overlay;
+            z-index: 999 !important;
+            visibility: hidden;
+            transition: var(--transition-long);
+
+            &.active {
+                transform: translateX(340px);
+                visibility: visible;
+            }
+        }
+
+        //HOME PAGE
+        .container {
+            margin-left: 0px;
+            padding-inline: 36px;
+        }
+
+        .footer {
+            margin-left: 0px;
+        }
+
     }
 }
