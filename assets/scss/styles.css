@@ -103,6 +103,10 @@ body {
   width: 8px;
 }
 
+.body {
+  background-color: var(--surface);
+}
+
 .btn {
   background-color: var(--primary);
 }
@@ -280,11 +284,14 @@ body {
   padding-bottom: 16px !important;
   margin-bottom: -16px !important;
 }
+.slider-list::-webkit-scrollbar {
+  height: 8px !important;
+}
 .slider-list::-webkit-scrollbar-thumb {
   background-color: transparent !important;
 }
 .slider-list::-webkit-scrollbar-button {
-  width: 8px !important;
+  width: 0px !important;
 }
 .slider-list:hover::-webkit-scrollbar-thumb,
 .slider-list :focus-visible::-webkit-scrollbar-thumb {
@@ -327,7 +334,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  z-index: 999 !important;
+  z-index: 1000 !important;
   background-color: var(--surface);
 }
 .header .logo {
@@ -963,7 +970,9 @@ body {
   .sidebar {
     visibility: visible;
     left: 0px;
-    border-top: 0;
+    bottom: 0px;
+    border-top: 0px;
+    background-color: var(--surface);
     max-width: 224px;
   }
   .container {

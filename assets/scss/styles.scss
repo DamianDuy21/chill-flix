@@ -107,7 +107,6 @@ body {
     color: var(--on-background);
     font-size: var(--fs-body);
     line-height: 1.5;
-    // min-height: 300vh;
 }
 
 :focus-visible {
@@ -126,6 +125,9 @@ body {
 
 
 //REUSED STYLE
+.body {
+    background-color: var(--surface);
+}
 
 .btn {
     background-color: var(--primary);
@@ -321,12 +323,16 @@ body {
     padding-bottom: 16px !important;
     margin-bottom: -16px !important;
 
+    &::-webkit-scrollbar {
+        height: 8px !important;
+    }
+
     &::-webkit-scrollbar-thumb {
         background-color: transparent !important;
     }
 
     &::-webkit-scrollbar-button {
-        width: 8px !important;
+        width: 0px !important;
     }
 
     &:hover,
@@ -375,7 +381,7 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    z-index: 999 !important;
+    z-index: 1000 !important;
     background-color: var(--surface);
 
     .logo {
@@ -1225,9 +1231,11 @@ body {
     .sidebar {
         visibility: visible;
         left: 0px;
-        border-top: 0;
-        // background-color: var(--surface);
+        bottom: 0px;
+        border-top: 0px;
+        background-color: var(--surface);
         max-width: 224px;
+
     }
 
     //HOME PAGE
