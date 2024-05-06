@@ -46,10 +46,10 @@ const bannerWatchMoviePage = async () => {
     }).join("")}
                 
         </div>
-        <div class="movie-detail">
+        <div class="movie-detail ">
         <div class="detail-box">
             <div class="detail-content">
-                <h1 class="heading">${result.movie.name} ${episode == "Full" ? ('') : (`- ${episode}`)} </h1>
+                <h1 class="heading ">${result.movie.name} ${episode == "Full" ? ('') : (`- ${episode}`)} </h1>
             </div>
 
             <div class="episode-list">
