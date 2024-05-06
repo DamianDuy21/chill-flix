@@ -485,7 +485,7 @@ body {
   top: 50vh;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 998;
   background-color: var(--surface);
   display: none;
 }

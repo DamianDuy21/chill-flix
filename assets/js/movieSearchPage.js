@@ -22,7 +22,5 @@ const movieSearchPagePageRender = async () => {
         await movieSearchShowMoreBtnSliderListRender()
     }
 
-
-
 }
 movieSearchPagePageRender()

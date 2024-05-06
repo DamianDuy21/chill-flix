@@ -2,8 +2,6 @@ import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_MOVIE } from "./api.js"
 import { handleToDetailPage } from "./global.js"
 
 let limit = 24
-let totalPage = 1
-let currentPage = 1
 const movieSearchHeaderBoxRender = async () => {
 
     const fetchMovie = async (limit) => {
@@ -14,8 +12,6 @@ const movieSearchHeaderBoxRender = async () => {
         let api = API_SEARCH_MOVIE + `?keyword=${localStorage.getItem("search-slug")}` + `&limit=${limit}`
         console.log(api)
         const respone = await fetchAPI(api)
-        console.log(respone)
-        totalPage = await respone.data.params.pagination.totalPages
         const result = await Promise.all(respone.data.items.map(async (item) => {
             let movie_api = API_DETAIL_MOVIE + item.slug;
             const data = await fetchAPI(movie_api);
@@ -75,16 +71,6 @@ const movieSearchHeaderBoxRender = async () => {
     container.innerHTML += headerBoxSearchList
     await fetchMovie(limit)
     await handleToDetailPage()
-    // const loadMoreBtn = document.querySelector("[header-box-load-more-btn]");
-    // if (loadMoreBtn) {
-    //     loadMoreBtn.addEventListener("click", handleLoadMore);
-    // }
-    // if (currentPage >= totalPage) {
-    //     loadMoreBtn.setAttribute("style", "visibility: hidden; margin: 0px !important")
-    // }
-    // else {
-    //     loadMoreBtn.setAttribute("style", "visibility: visible;")
-    // }
 
 }
 export default movieSearchHeaderBoxRender

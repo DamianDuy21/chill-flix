@@ -6,9 +6,9 @@ const bannerDetailPage = async () => {
     const movieSlug = localStorage.getItem("movie-slug")
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
-    console.log(result)
+    localStorage.setItem("movie-name", result.movie.name)
+    localStorage.setItem("movie-alike", result.movie.category[0].slug)
     let trailer_url = result.movie.trailer_url.replace("/watch?v=", "/embed/")
-    console.log(trailer_url)
     localStorage.setItem("episode", "")
     const container = document.querySelector("[page-content]")
 

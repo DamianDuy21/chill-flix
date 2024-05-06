@@ -1,10 +1,12 @@
-import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_TELEVISIONSERIES } from "./api.js"
+import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_SEARCH_CATEGORY, API_TELEVISIONSERIES } from "./api.js"
 import { handleToDetailPage } from "./global.js"
 let page = 1
-let limit = 9
+let limit = 10
 const movieSearchShowMoreBtnSliderListRender = async () => {
     const classify = localStorage.getItem("search-slug")
+
     const fetchMovie = async () => {
+
         const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
         if (loadMoreBtn) {
             loadMoreBtn.classList.add("loading")
@@ -15,6 +17,9 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
         }
         else if (classify == "phim-bo") {
             api = API_TELEVISIONSERIES
+        }
+        else if (classify == "phim-lien-quan") {
+            api = API_SEARCH_CATEGORY + localStorage.getItem("movie-alike")
         }
         api = api + `?limit=${limit}` + `&page=${page}`
         const respone = await fetchAPI(api)
@@ -44,7 +49,6 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                 `;
             }));
             const filteredResult = result.filter(html => html !== undefined);
-            console.log(filteredResult)
             const gridList = document.querySelector("[showMoreBtn-grid-list]")
             filteredResult.forEach(item => {
                 gridList.innerHTML += item;
@@ -56,17 +60,22 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
     }
 
     const handleLoadMore = async () => {
+        await page++
         await fetchMovie()
-        page++
+
     }
 
     const container = document.querySelector("[page-content]")
+
+    let movieName = classify == "phim-lien-quan" ? (`- ` + localStorage.getItem("movie-name")) : ('')
+    console.log(movieName)
 
     const showMoreBtnSearchList = `
     <section class="searchShowMoreBtn-list" searchShowMoreBtn-list>
         <p class="label">Results for</p>
         <div class="title-wrapper">
-            <h3 class="title-large">${localStorage.getItem("search-name")}</h3>
+        <h3 class="title-large">${localStorage.getItem("search-name")} ${movieName}</h3>
+
         </div>
         <div class="grid-list" showMoreBtn-grid-list>
 
@@ -78,7 +87,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
     </section>
     `
     container.innerHTML += showMoreBtnSearchList
-    await handleLoadMore()
+    await fetchMovie()
     await handleToDetailPage()
     const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
     if (loadMoreBtn) {
