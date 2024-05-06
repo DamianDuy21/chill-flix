@@ -8,9 +8,10 @@ import sliderList from "./sliderList.js";
 
 
 const detailPageRender = async () => {
-    await handleResize()
+
     await headerBox()
     await sidebar()
+    await handleResize()
 
     const loadingTheme = document.querySelector("[loading-theme]")
     if (loadingTheme) {

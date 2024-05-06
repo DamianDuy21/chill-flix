@@ -9,9 +9,10 @@ import { sidebar } from "./sidebar.js";
 
 
 const movieSearchPagePageRender = async () => {
-    await handleResize()
+
     await headerBox()
     await sidebar()
+    await handleResize()
 
     const searchType = localStorage.getItem("search-type")
     if (searchType == "header-box") {

@@ -8,9 +8,9 @@ import { handleResize } from "./handleResize.js";
 
 
 const indexPageRender = async () => {
-    await handleResize()
     await headerBox()
     await sidebar()
+    await handleResize()
 
     const loadingTheme = document.querySelector("[loading-theme]")
     if (loadingTheme) {
