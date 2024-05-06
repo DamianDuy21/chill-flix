@@ -156,7 +156,7 @@ body {
   background-color: var(--primary-variant);
 }
 .load-more.loading {
-  padding-left: 50px;
+  padding-left: 50px !important;
 }
 .load-more.loading::before {
   display: block;

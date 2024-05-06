@@ -6,6 +6,10 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
     const searchType = localStorage.getItem("search-type")
     const classify = localStorage.getItem("search-slug")
     const fetchMovie = async () => {
+        const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
+        if (loadMoreBtn) {
+            loadMoreBtn.classList.add("loading")
+        }
         let api = ''
         if (classify == "phim-le") {
             api = API_FEATUREFILM
@@ -47,9 +51,9 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                 gridList.innerHTML += item;
             });
         }
-
-
-
+        if (loadMoreBtn) {
+            loadMoreBtn.classList.remove("loading")
+        }
     }
 
     const handleLoadMore = async () => {
