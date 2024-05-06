@@ -40,8 +40,7 @@ const movieSearchSidebarRender = async () => {
     };
 
     const handleLoadMore = async () => {
-        console.log(1)
-        // await fetchMovie(page);
+        await fetchMovie(page);
         page++;
     };
 
@@ -66,29 +65,20 @@ const movieSearchSidebarRender = async () => {
 
         </div>
 
-        <button class="btn load-more" sidebar-load-more-btn>Load more</button>
+        
     </section>
     `;
-
+    // <button class="btn load-more" sidebar-load-more-btn>Load more</button>
     container.innerHTML += sidebarSearchList;
     await handleShowUp();
     await fetchMovie(); // Fetch initial data
     await handleToDetailPage();
 
-    const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
-    console.log(loadMoreBtn)
-    if (loadMoreBtn) {
-        console.log("yeahh")
-        container.addEventListener("click", (event) => {
-            const closestLoadMoreBtn = event.target.closest("[sidebar-load-more-btn]");
-            if (closestLoadMoreBtn === loadMoreBtn) {
-                handleLoadMore();
-            }
-        });
-    }
-    else {
-        console.log("ehhhh")
-    }
+    // const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
+    // console.log(loadMoreBtn)
+    // if (loadMoreBtn) {
+    //     loadMoreBtn.addEventListener("click", handleLoadMore);
+    // }
 
 };
 

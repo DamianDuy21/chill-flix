@@ -1,6 +1,7 @@
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_TELEVISIONSERIES } from "./api.js"
 import { handleToDetailPage } from "./global.js"
-
+let page = 1
+let limit = 9
 const movieSearchShowMoreBtnSliderListRender = async () => {
     const searchType = localStorage.getItem("search-type")
     const classify = localStorage.getItem("search-slug")
@@ -12,6 +13,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
         else if (classify == "phim-bo") {
             api = API_TELEVISIONSERIES
         }
+        api = api + `?limit=${limit}` + `&page=${page}`
         const respone = await fetchAPI(api)
         if (respone) {
             const result = await Promise.all(respone.data.items.map(async (item) => {
@@ -52,6 +54,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
 
     const handleLoadMore = async () => {
         await fetchMovie()
+        page++
     }
 
     const handleShowUp = () => {
