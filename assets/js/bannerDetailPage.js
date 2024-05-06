@@ -2,6 +2,10 @@ import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
 
 
 const bannerDetailPage = async () => {
+    const loadingTheme = document.querySelector("[loading-theme]")
+    if (loadingTheme) {
+        loadingTheme.classList.add("active")
+    }
     const movieSlug = localStorage.getItem("movie-slug")
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
@@ -89,6 +93,9 @@ const bannerDetailPage = async () => {
         </div>
     `
 
+    if (loadingTheme) {
+        loadingTheme.classList.remove("active")
+    }
 
     container.innerHTML += movieDetail
 

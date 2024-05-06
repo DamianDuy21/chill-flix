@@ -88,7 +88,6 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
 
     </section>
     `
-
     container.innerHTML += showMoreBtnSearchList
     await handleShowUp()
     await handleLoadMore()

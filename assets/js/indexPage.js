@@ -8,6 +8,7 @@ import headerBox from "./headerBox.js";
 const indexPageRender = async () => {
     await headerBox()
     await sidebar()
+
     await bannerIndexPage()
 
     //phim le

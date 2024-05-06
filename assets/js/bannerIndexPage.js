@@ -6,9 +6,13 @@ const bannerIndexPageControlHandler = () => {
     // Event delegation for handling click events on poster elements
     document.addEventListener("click", (event) => {
         const poster = event.target.closest("[poster]");
+        const buttonPoster = event.target.closest("[buttonPoster]")
         if (!poster) return; // If the clicked element is not a poster, exit
 
         // Remove active class from all posters and slider items
+        document.querySelectorAll("[buttonPoster]").forEach(item => {
+            item.classList.remove("active");
+        });
         document.querySelectorAll("[poster]").forEach(item => {
             item.classList.remove("active");
         });
@@ -18,6 +22,7 @@ const bannerIndexPageControlHandler = () => {
 
         // Add active class to the clicked poster and corresponding slider item
         poster.classList.add("active");
+        buttonPoster.classList.add("active")
         const sliderItemId = poster.getAttribute("poster-id");
         const correspondingSliderItem = document.querySelector(`[slideritem-id="${sliderItemId}"]`);
         if (correspondingSliderItem) {
@@ -29,6 +34,10 @@ const bannerIndexPageControlHandler = () => {
 };
 
 const bannerIndexPage = async () => {
+    const loadingTheme = document.querySelector("[loading-theme]")
+    if (loadingTheme) {
+        loadingTheme.classList.add("active")
+    }
     const respone = await fetchAPI(API_NEW_MOVIE)
     const result = respone.items
     const dataPromises = result.map(async (item) => {
@@ -49,7 +58,7 @@ const bannerIndexPage = async () => {
         return `
                <div class= "slider-item ${index == 0 ? ("active") : ("")}" slider-item slideritem-id=${index}>
                     <img src=${item.movie.thumb_url} alt=${item.movie.name} class="img-cover"
-                        loading="eager">
+                        loading="lazy">
                     <div class="banner-content">
                         <h2 class="heading">
                             ${item.movie.name}
@@ -83,7 +92,7 @@ const bannerIndexPage = async () => {
                 <div class="control-inner">
                     ${data.map((item, index) => {
         return `
-                        <button class="poster-box slider-item ${index == 0 ? ("active") : ("")}" >
+                        <button class="poster-box slider-item ${index == 0 ? ("active") : ("")}" buttonPoster>
                         <img src=${item.movie.poster_url} alt=${item.movie.name}
                             loading="lazy" draggable="false" class="img-cover" 
                             poster poster-id=${index}>
@@ -96,9 +105,8 @@ const bannerIndexPage = async () => {
         </section>
     
     `
-
+    loadingTheme.classList.remove("active")
     container.innerHTML += banner
-
     await handleToDetailPage()
     await bannerIndexPageControlHandler()
 }

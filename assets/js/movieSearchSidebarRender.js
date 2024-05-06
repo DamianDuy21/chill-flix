@@ -5,7 +5,6 @@ let page = 1;
 
 const movieSearchSidebarRender = async () => {
     const searchType = localStorage.getItem("search-type");
-
     const fetchMovie = async () => {
         const api = API_SEARCH_CATEGORY + localStorage.getItem("search-slug") + `?page=${page}`;
         const respone = await fetchAPI(api);
@@ -69,6 +68,8 @@ const movieSearchSidebarRender = async () => {
     </section>
     `;
     // <button class="btn load-more" sidebar-load-more-btn>Load more</button>
+
+
     container.innerHTML += sidebarSearchList;
     await handleShowUp();
     await fetchMovie(); // Fetch initial data

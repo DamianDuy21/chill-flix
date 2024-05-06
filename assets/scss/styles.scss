@@ -297,7 +297,7 @@ body {
     line-height: 2.7rem;
 
     span {
-        opacity: 0.5;
+        opacity: 0.6;
         transition: var(--transition-short);
     }
 
@@ -431,7 +431,7 @@ body {
                 top: 50%;
                 transform: translateY(-50%);
                 left: 14px;
-                opacity: 0.5;
+                opacity: 0.6;
                 transition: var(--transition-short);
             }
 
@@ -449,7 +449,7 @@ body {
         border-radius: var(--radius-8);
 
         img {
-            opacity: 0.5;
+            opacity: 0.6;
             transition: var(--transition-short);
 
             &:hover,
@@ -567,7 +567,7 @@ body {
 
     &.active {
         display: block;
-        opacity: 0.5;
+        opacity: 0.6;
         pointer-events: all;
     }
 }
@@ -596,6 +596,37 @@ body {
     //     z-index: 1;
     //     pointer-events: none;
     // }
+    .loading-theme {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 96px);
+        z-index: 998;
+        background-color: var(--surface);
+
+        &::before {
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 36px);
+            content: "";
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--white);
+            border-radius: 36px;
+            border-right-color: transparent;
+            animation: loading 500ms linear infinite;
+            display: none;
+        }
+
+        display: none;
+
+        &.active {
+            display: block;
+
+            &::before {
+                display: block;
+            }
+        }
+    }
 }
 
 //BANNER
@@ -708,10 +739,15 @@ body {
                 width: 96px;
                 border-radius: var(--radius-8);
                 flex-shrink: 0;
-                filter: brightness(0.4);
+                opacity: 0.6;
+                transform: var(--transition-short);
+
+                &:hover {
+                    opacity: 0.8;
+                }
 
                 &.active {
-                    filter: brightness(1);
+                    opacity: 1;
                     box-shadow: var(--shadow-1);
                 }
             }
