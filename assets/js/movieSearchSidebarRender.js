@@ -44,8 +44,7 @@ const movieSearchSidebarRender = async () => {
     };
 
     const handleLoadMore = async () => {
-        await fetchMovie(page);
-        page++;
+        await fetchMovie(++page);
     };
 
 
@@ -70,11 +69,11 @@ const movieSearchSidebarRender = async () => {
     await fetchMovie(); // Fetch initial data
     await handleToDetailPage();
 
-    // const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
-    // console.log(loadMoreBtn)
-    // if (loadMoreBtn) {
-    //     loadMoreBtn.addEventListener("click", handleLoadMore);
-    // }
+    const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
+    console.log(loadMoreBtn)
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", handleLoadMore);
+    }
 
 };
 
