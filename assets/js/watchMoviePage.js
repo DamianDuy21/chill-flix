@@ -1,12 +1,14 @@
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_SEARCH_CATEGORY } from "./api.js";
 import bannerWatchMoviePage from "./bannerWatchMoviePage.js";
 import { getMoviesByAPI } from "./getDataAPI.js";
+import { handleResize } from "./handleResize.js";
 import headerBox from "./headerBox.js";
 import { sidebar } from "./sidebar.js";
 import sliderList from "./sliderList.js";
 
 
 const watchMoviePageRender = async () => {
+    await handleResize()
     await headerBox()
     await sidebar()
 

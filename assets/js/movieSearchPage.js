@@ -1,4 +1,5 @@
 
+import { handleResize } from "./handleResize.js";
 import headerBox from "./headerBox.js";
 import movieSearchHeaderBoxRender from "./movieSearchHeaderBoxRender.js";
 import movieSearchShowMoreBtnSliderListRender from "./movieSearchShowMoreBtnSliderListRender.js";
@@ -8,6 +9,7 @@ import { sidebar } from "./sidebar.js";
 
 
 const movieSearchPagePageRender = async () => {
+    await handleResize()
     await headerBox()
     await sidebar()
 

@@ -425,11 +425,11 @@ body {
 
 .sidebar {
   position: fixed;
-  background-color: var(--background);
+  background-color: var(--surface);
   top: 96px;
   bottom: 0;
-  left: -340px;
-  max-width: 340px;
+  left: -224px;
+  max-width: 224px;
   width: 100%;
   max-width: 256px;
   border-top: 1px solid var(--banner-background);
@@ -439,7 +439,7 @@ body {
   transition: var(--transition-long);
 }
 .sidebar.active {
-  transform: translateX(340px);
+  transform: translateX(224px);
   visibility: visible;
 }
 .sidebar .sidebar-inner {

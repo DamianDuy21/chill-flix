@@ -4,16 +4,17 @@ import sliderList from "./sliderList.js";
 import { sidebar } from "./sidebar.js";
 import headerBox from "./headerBox.js";
 import { getMoviesByAPI } from "./getDataAPI.js";
+import { handleResize } from "./handleResize.js";
 
 
 const indexPageRender = async () => {
+    await handleResize()
     await headerBox()
     await sidebar()
 
     const loadingTheme = document.querySelector("[loading-theme]")
     if (loadingTheme) {
         loadingTheme.classList.add("active")
-        console.log("ahaha")
     }
     await bannerIndexPage()
 
