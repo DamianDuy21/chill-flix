@@ -9,6 +9,11 @@ const indexPageRender = async () => {
     await headerBox()
     await sidebar()
 
+    const loadingTheme = document.querySelector("[loading-theme]")
+    if (loadingTheme) {
+        loadingTheme.classList.add("active")
+        console.log("ahaha")
+    }
     await bannerIndexPage()
 
     //phim le
@@ -36,6 +41,10 @@ const indexPageRender = async () => {
     // Wait for all asynchronous operations to complete
     const data2 = await Promise.all(dataPromises2);
     await sliderList(data2, "Phim bộ", "phim-bo")
+
+
+
+    loadingTheme.classList.remove("active")
 }
 indexPageRender()
 

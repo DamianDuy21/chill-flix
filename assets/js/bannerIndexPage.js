@@ -34,10 +34,7 @@ const bannerIndexPageControlHandler = () => {
 };
 
 const bannerIndexPage = async () => {
-    const loadingTheme = document.querySelector("[loading-theme]")
-    if (loadingTheme) {
-        loadingTheme.classList.add("active")
-    }
+
     const respone = await fetchAPI(API_NEW_MOVIE)
     const result = respone.items
     const dataPromises = result.map(async (item) => {
@@ -105,7 +102,7 @@ const bannerIndexPage = async () => {
         </section>
     
     `
-    loadingTheme.classList.remove("active")
+
     container.innerHTML += banner
     await handleToDetailPage()
     await bannerIndexPageControlHandler()

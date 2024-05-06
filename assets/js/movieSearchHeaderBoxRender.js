@@ -6,8 +6,11 @@ let totalPage = 1
 let currentPage = 1
 const movieSearchHeaderBoxRender = async () => {
 
-    const searchType = localStorage.getItem("search-type")
     const fetchMovie = async (limit) => {
+        const loadMoreBtn = document.querySelector("[header-box-load-more-btn]");
+        if (loadMoreBtn) {
+            loadMoreBtn.classList.add("loading")
+        }
         let api = API_SEARCH_MOVIE + `?keyword=${localStorage.getItem("search-slug")}` + `&limit=${limit}`
         const respone = await fetchAPI(api)
         totalPage = await respone.data.params.pagination.totalPages
@@ -40,20 +43,11 @@ const movieSearchHeaderBoxRender = async () => {
         filteredResult.forEach(item => {
             gridList.innerHTML += item
         })
-
+        loadMoreBtn.classList.remove("loading")
     }
 
     const handleLoadMore = () => {
         fetchMovie(12)
-    }
-    const handleShowUp = () => {
-        const searchHeaderBoxList = document.querySelector("[searchHeaderBox-list]")
-        if (searchType == "header-box") {
-            searchHeaderBoxList.classList.add("active")
-        }
-        else {
-            searchHeaderBoxList.classList.remove("active")
-        }
     }
 
     const container = document.querySelector("[page-content]")
@@ -75,19 +69,18 @@ const movieSearchHeaderBoxRender = async () => {
     `
 
     container.innerHTML += headerBoxSearchList
-    await handleShowUp()
     await handleLoadMore()
     await handleToDetailPage()
     const loadMoreBtn = document.querySelector("[header-box-load-more-btn]");
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener("click", handleLoadMore);
     }
-    if (currentPage >= totalPage) {
-        loadMoreBtn.setAttribute("style", "visibility: hidden; margin: 0px !important")
-    }
-    else {
-        loadMoreBtn.setAttribute("style", "visibility: visible;")
-    }
+    // if (currentPage >= totalPage) {
+    //     loadMoreBtn.setAttribute("style", "visibility: hidden; margin: 0px !important")
+    // }
+    // else {
+    //     loadMoreBtn.setAttribute("style", "visibility: visible;")
+    // }
 
 }
 export default movieSearchHeaderBoxRender

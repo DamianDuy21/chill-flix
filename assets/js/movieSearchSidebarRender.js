@@ -4,8 +4,12 @@ import { handleToDetailPage } from "./global.js";
 let page = 1;
 
 const movieSearchSidebarRender = async () => {
-    const searchType = localStorage.getItem("search-type");
+
     const fetchMovie = async () => {
+        const loadMoreBtn = document.querySelector("[sidebar-load-more-btn]");
+        if (loadMoreBtn) {
+            loadMoreBtn.classList.add("loading")
+        }
         const api = API_SEARCH_CATEGORY + localStorage.getItem("search-slug") + `?page=${page}`;
         const respone = await fetchAPI(api);
         const result = await Promise.all(respone.data.items.map(async (item) => {
@@ -36,6 +40,7 @@ const movieSearchSidebarRender = async () => {
         filteredResult.forEach(item => {
             gridList.innerHTML += item;
         });
+        loadMoreBtn.classList.remove("loading")
     };
 
     const handleLoadMore = async () => {
@@ -43,14 +48,6 @@ const movieSearchSidebarRender = async () => {
         page++;
     };
 
-    const handleShowUp = () => {
-        const searchSidebarList = document.querySelector("[searchSidebar-list]");
-        if (searchType === "sidebar") {
-            searchSidebarList.classList.add("active");
-        } else {
-            searchSidebarList.classList.remove("active");
-        }
-    };
 
     const container = document.querySelector("[page-content]");
 
@@ -63,15 +60,13 @@ const movieSearchSidebarRender = async () => {
         <div class="grid-list" sidebar-grid-list>
 
         </div>
-
-        
+        <button class="btn load-more" sidebar-load-more-btn>Load more</button>
     </section>
     `;
-    // <button class="btn load-more" sidebar-load-more-btn>Load more</button>
+    // 
 
 
     container.innerHTML += sidebarSearchList;
-    await handleShowUp();
     await fetchMovie(); // Fetch initial data
     await handleToDetailPage();
 

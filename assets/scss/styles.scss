@@ -572,6 +572,41 @@ body {
     }
 }
 
+.loading-theme {
+    position: absolute;
+    top: 50vh;
+    left: 0;
+    width: 100%;
+    // height: calc(50vh);
+    z-index: 1000;
+    background-color: var(--surface);
+    display: none;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 18px);
+        content: "";
+        width: 36px;
+        height: 36px;
+        border: 3px solid var(--white);
+        border-radius: 36px;
+        border-right-color: transparent;
+        animation: loading 500ms linear infinite;
+        display: none;
+    }
+
+
+
+    &.active {
+        display: block;
+
+        &::before {
+            display: block;
+        }
+    }
+}
+
 
 // HOMEPAGE
 .container {
@@ -596,38 +631,9 @@ body {
     //     z-index: 1;
     //     pointer-events: none;
     // }
-    .loading-theme {
-        position: relative;
-        width: 100%;
-        height: calc(100vh - 96px);
-        z-index: 998;
-        background-color: var(--surface);
 
-        &::before {
-            position: absolute;
-            top: 50%;
-            left: calc(50% - 36px);
-            content: "";
-            width: 36px;
-            height: 36px;
-            border: 3px solid var(--white);
-            border-radius: 36px;
-            border-right-color: transparent;
-            animation: loading 500ms linear infinite;
-            display: none;
-        }
-
-        display: none;
-
-        &.active {
-            display: block;
-
-            &::before {
-                display: block;
-            }
-        }
-    }
 }
+
 
 //BANNER
 .banner {
@@ -906,12 +912,6 @@ body {
 .searchHeaderBox-list,
 .searchSidebar-list,
 .searchShowMoreBtn-list {
-
-    display: none;
-
-    &.active {
-        display: block;
-    }
 
     .title-wrapper {
         margin-top: 4px;

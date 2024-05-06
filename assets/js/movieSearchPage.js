@@ -11,8 +11,18 @@ const movieSearchPagePageRender = async () => {
     await headerBox()
     await sidebar()
 
-    await movieSearchHeaderBoxRender()
-    await movieSearchSidebarRender()
-    await movieSearchShowMoreBtnSliderListRender()
+    const searchType = localStorage.getItem("search-type")
+    if (searchType == "header-box") {
+        await movieSearchHeaderBoxRender()
+    }
+    if (searchType == "sidebar") {
+        await movieSearchSidebarRender()
+    }
+    if (searchType == "show-more-btn") {
+        await movieSearchShowMoreBtnSliderListRender()
+    }
+
+
+
 }
 movieSearchPagePageRender()

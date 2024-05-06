@@ -8,6 +8,11 @@ import sliderList from "./sliderList.js";
 const detailPageRender = async () => {
     await headerBox()
     await sidebar()
+
+    const loadingTheme = document.querySelector("[loading-theme]")
+    if (loadingTheme) {
+        loadingTheme.classList.add("active")
+    }
     await bannerDetailPage()
 
     const respone1 = await fetchAPI(API_FEATUREFILM)
@@ -22,6 +27,10 @@ const detailPageRender = async () => {
     // Wait for all asynchronous operations to complete
     const data1 = await Promise.all(dataPromises1);
     await sliderList(data1, "Phim lẻ", "phim-le")
+
+
+    loadingTheme.classList.remove("active")
+
 }
 detailPageRender()
 

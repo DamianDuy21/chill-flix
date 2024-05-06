@@ -16,10 +16,7 @@ const handleEpisode = () => {
     })
 }
 const bannerWatchMoviePage = async () => {
-    const loadingTheme = document.querySelector("[loading-theme]")
-    if (loadingTheme) {
-        loadingTheme.classList.add("active")
-    }
+
     const movieSlug = localStorage.getItem("movie-slug")
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
@@ -75,7 +72,6 @@ const bannerWatchMoviePage = async () => {
     </div>
     `
 
-    loadingTheme.classList.remove("active")
     container.innerHTML += video
     await handleEpisode()
 }

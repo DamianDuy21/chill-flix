@@ -3,7 +3,6 @@ import { handleToDetailPage } from "./global.js"
 let page = 1
 let limit = 9
 const movieSearchShowMoreBtnSliderListRender = async () => {
-    const searchType = localStorage.getItem("search-type")
     const classify = localStorage.getItem("search-slug")
     const fetchMovie = async () => {
         const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
@@ -61,16 +60,6 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
         page++
     }
 
-    const handleShowUp = () => {
-        const searchShowMoreBtnList = document.querySelector("[searchShowMoreBtn-list]")
-        if (searchType == "show-more-btn") {
-            searchShowMoreBtnList.classList.add("active")
-        }
-        else {
-            searchShowMoreBtnList.classList.remove("active")
-        }
-    }
-
     const container = document.querySelector("[page-content]")
 
     const showMoreBtnSearchList = `
@@ -89,7 +78,6 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
     </section>
     `
     container.innerHTML += showMoreBtnSearchList
-    await handleShowUp()
     await handleLoadMore()
     await handleToDetailPage()
     const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
