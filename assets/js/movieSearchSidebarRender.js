@@ -2,16 +2,25 @@ import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_CATEGORY } from "./api.js";
 import { handleToDetailPage } from "./global.js";
 
 let page = 1;
-
+let click = 1;
+let maxClick = 0
 const movieSearchSidebarRender = async () => {
 
     const fetchMovie = async () => {
         const loadMoreBtn = document.querySelector("[sidebar-load-more-btn]");
+
         if (loadMoreBtn) {
             loadMoreBtn.classList.add("loading")
         }
         const api = API_SEARCH_CATEGORY + localStorage.getItem("search-slug") + `?page=${page}`;
         const respone = await fetchAPI(api);
+        console.log(respone.data.params.pagination.totalPages)
+        maxClick = respone.data.params.pagination.totalPages
+        if (loadMoreBtn) {
+            if (click >= maxClick - 1) {
+                loadMoreBtn.setAttribute("style", "display: none")
+            }
+        }
         const result = await Promise.all(respone.data.items.map(async (item) => {
             const movie_api = API_DETAIL_MOVIE + item.slug;
             const data = await fetchAPI(movie_api);
@@ -45,6 +54,7 @@ const movieSearchSidebarRender = async () => {
 
     const handleLoadMore = async () => {
         await fetchMovie(++page);
+        click++;
     };
 
 
@@ -70,10 +80,10 @@ const movieSearchSidebarRender = async () => {
     await handleToDetailPage();
 
     const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
-    console.log(loadMoreBtn)
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener("click", handleLoadMore);
     }
+
 
 };
 
