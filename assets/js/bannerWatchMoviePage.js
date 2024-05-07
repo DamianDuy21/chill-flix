@@ -8,13 +8,16 @@ let movieStatus = true
 const handleEpisode = () => {
     document.addEventListener("click", (event) => {
         const episode = event.target.closest("[episode-btn]")
-        document.querySelectorAll("[episode-btn]").forEach(item => {
-            item.classList.remove("active");
-        });
-        episode.classList.add("active")
-        setCookie("episode", episode.innerHTML, 1)
-        // localStorage.setItem("episode", episode.innerHTML)
-        window.location.reload()
+        if (episode) {
+            document.querySelectorAll("[episode-btn]").forEach(item => {
+                item.classList.remove("active");
+            });
+            episode.classList.add("active")
+            setCookie("episode", episode.innerHTML, 1)
+            // localStorage.setItem("episode", episode.innerHTML)
+            window.location.reload()
+        }
+
     })
 }
 const bannerWatchMoviePage = async () => {
@@ -42,7 +45,7 @@ const bannerWatchMoviePage = async () => {
             movieStatus = false
         }
     }
-
+    // src= ${item.link_embed}
     const container = document.querySelector("[page-content]")
     container.classList.add("watch-movie-page")
     let video = ``

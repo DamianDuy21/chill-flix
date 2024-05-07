@@ -600,6 +600,7 @@ body {
     background-color: var(--surface);
     // background-color: red;
     display: none;
+    // pointer-events: none;
 
     &::before {
         position: absolute;
