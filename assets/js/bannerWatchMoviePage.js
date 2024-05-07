@@ -13,7 +13,7 @@ const handleEpisode = () => {
         });
         episode.classList.add("active")
         setCookie("episode", episode.innerHTML, 0.5)
-        localStorage.setItem("episode", episode.innerHTML)
+        // localStorage.setItem("episode", episode.innerHTML)
         window.location.reload()
     })
 }
@@ -21,6 +21,9 @@ const bannerWatchMoviePage = async () => {
 
     // const movieSlug = localStorage.getItem("movie-slug")
     const movieSlug = getCookie("movie-slug")
+    if (!movieSlug) {
+        window.location.href = "index.html";
+    }
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     console.log(result)
@@ -33,7 +36,7 @@ const bannerWatchMoviePage = async () => {
         if (result.episodes[0].server_data[0]) {
             episode = result.episodes[0].server_data[0].name
             setCookie("episode", episode, 0.5)
-            localStorage.setItem("episode", episode)
+            // localStorage.setItem("episode", episode)
         }
         else {
             movieStatus = false

@@ -16,8 +16,8 @@ const sidebar = async () => {
             if (cate) {
                 setCookie("search-name", cate.innerHTML, 0.5)
                 setCookie("search-slug", cate.getAttribute("search-slug"), 0.5)
-                localStorage.setItem("search-name", cate.innerHTML)
-                localStorage.setItem("search-slug", cate.getAttribute("search-slug"))
+                // localStorage.setItem("search-name", cate.innerHTML)
+                // localStorage.setItem("search-slug", cate.getAttribute("search-slug"))
             }
 
         })
@@ -58,7 +58,7 @@ const sidebar = async () => {
             siderbarBtn.classList.toggle("active")
             overlay.classList.toggle("active")
             setCookie("search-type", "sidebar", 0.5)
-            localStorage.setItem("search-type", "sidebar")
+            // localStorage.setItem("search-type", "sidebar")
         })
     }
     const sidebarr = document.querySelector("[sidebar]")

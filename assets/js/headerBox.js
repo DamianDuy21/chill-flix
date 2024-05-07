@@ -18,9 +18,9 @@ const headerBox = async () => {
         setCookie("search-slug", searchKey, 0.5)
         setCookie("search-slug", searchKey, 0.5)
         setCookie("search-type", "header-box", 0.5)
-        localStorage.setItem("search-slug", searchKey)
-        localStorage.setItem("search-name", searchKey)
-        localStorage.setItem("search-type", "header-box")
+        // localStorage.setItem("search-slug", searchKey)
+        // localStorage.setItem("search-name", searchKey)
+        // localStorage.setItem("search-type", "header-box")
         window.location.href = './movieSearch.html';
     }
     const searchWrapper = `

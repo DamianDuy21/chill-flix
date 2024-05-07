@@ -20,7 +20,7 @@ const handleToDetailPage = async () => {
         const item = event.target.closest("[todetail]")
         if (item) {
             setCookie("movie-slug", item.getAttribute("movie-slug"), 0.5)
-            localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
+            // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 
     })
@@ -30,7 +30,7 @@ const handleToWatchMoviePage = () => {
         const item = event.target.closest("[watch-now-btn]")
         if (item) {
             setCookie("movie-slug", item.getAttribute("movie-slug"), 0.5)
-            localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
+            // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 
     })

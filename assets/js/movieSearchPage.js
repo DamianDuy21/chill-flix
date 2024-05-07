@@ -16,6 +16,9 @@ const movieSearchPagePageRender = async () => {
     await handleResize()
 
     const searchType = getCookie("search-type")
+    if (!searchType) {
+        window.location.href = "index.html";
+    }
     // const searchType = localStorage.getItem("search-type")
     if (searchType == "header-box") {
         await movieSearchHeaderBoxRender()

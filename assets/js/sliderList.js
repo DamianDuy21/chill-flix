@@ -10,9 +10,9 @@ const sliderList = async (data, title, slug) => {
         setCookie("search-slug", slug, 0.5)
         setCookie("search-type", "show-more-btn", 0.5)
         setCookie("search-name", title, 0.5)
-        localStorage.setItem("search-slug", slug);
-        localStorage.setItem("search-type", "show-more-btn");
-        localStorage.setItem("search-name", title);
+        // localStorage.setItem("search-slug", slug);
+        // localStorage.setItem("search-type", "show-more-btn");
+        // localStorage.setItem("search-name", title);
     };
 
     const movieList = `

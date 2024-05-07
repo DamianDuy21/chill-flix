@@ -6,15 +6,18 @@ const bannerDetailPage = async () => {
 
     // const movieSlug = localStorage.getItem("movie-slug")
     const movieSlug = getCookie("movie-slug")
+    if (!movieSlug) {
+        window.location.href = "index.html";
+    }
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     setCookie("movie-name", result.movie.name, 0.5)
     setCookie("movie-alike", result.movie.category[0].slug, 0.5)
-    localStorage.setItem("movie-name", result.movie.name)
-    localStorage.setItem("movie-alike", result.movie.category[0].slug)
+    // localStorage.setItem("movie-name", result.movie.name)
+    // localStorage.setItem("movie-alike", result.movie.category[0].slug)
     let trailer_url = result.movie.trailer_url.replace("/watch?v=", "/embed/")
     setCookie("episode", "")
-    localStorage.setItem("episode", "")
+    // localStorage.setItem("episode", "")
     const container = document.querySelector("[page-content]")
 
 
