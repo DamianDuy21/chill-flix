@@ -1,7 +1,7 @@
 import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_MOVIE } from "./api.js"
 import { handleToDetailPage } from "./global.js"
 
-let limit = 24
+let limit = 10
 const movieSearchHeaderBoxRender = async () => {
 
     const fetchMovie = async (limit) => {
@@ -10,8 +10,12 @@ const movieSearchHeaderBoxRender = async () => {
             loadMoreBtn.classList.add("loading")
         }
         let api = API_SEARCH_MOVIE + `?keyword=${localStorage.getItem("search-slug")}` + `&limit=${limit}`
-        console.log(api)
+        // console.log(api)
         const respone = await fetchAPI(api)
+        if (respone.data.params.pagination.totalItems == 0) {
+            const searchNotFound = document.querySelector("[search-not-found]")
+            searchNotFound.setAttribute("style", "display: block")
+        }
         const result = await Promise.all(respone.data.items.map(async (item) => {
             let movie_api = API_DETAIL_MOVIE + item.slug;
             const data = await fetchAPI(movie_api);
@@ -38,15 +42,19 @@ const movieSearchHeaderBoxRender = async () => {
         }));
         const filteredResult = result.filter(html => html !== undefined);
         const gridList = document.querySelector("[headerbox-grid-list]")
+        gridList.innerHTML = ''
         filteredResult.forEach(item => {
             gridList.innerHTML += item
         })
         loadMoreBtn.classList.remove("loading")
-        loadMoreBtn.setAttribute("style", "display: none")
+        if (limit >= respone.data.params.pagination.totalItems) {
+            loadMoreBtn.setAttribute("style", "display: none")
+        }
+
     }
 
     const handleLoadMore = () => {
-        limit += 24
+        limit += 10
         fetchMovie(limit)
     }
 
@@ -58,6 +66,9 @@ const movieSearchHeaderBoxRender = async () => {
         <div class="title-wrapper">
             <h3 class="title-large">${localStorage.getItem("search-name")}</h3>
         </div>
+    <div search-not-found style="display: none;">
+        <h3 class="title-large"> Không có kết quả tìm kiếm...</h3>
+    </div>  
     <div class="grid-list" headerbox-grid-list>
 
         
@@ -71,6 +82,10 @@ const movieSearchHeaderBoxRender = async () => {
     container.innerHTML += headerBoxSearchList
     await fetchMovie(limit)
     await handleToDetailPage()
+    const loadMoreBtn = document.querySelector("[header-box-load-more-btn]");
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", handleLoadMore);
+    }
 
 }
 export default movieSearchHeaderBoxRender

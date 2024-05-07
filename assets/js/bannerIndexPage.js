@@ -1,5 +1,5 @@
 import fetchAPI, { API_DETAIL_MOVIE, API_NEW_MOVIE } from "./api.js"
-import { handleToDetailPage } from "./global.js";
+import { handleToDetailPage, handleToWatchMoviePage } from "./global.js";
 
 
 const bannerIndexPageControlHandler = () => {
@@ -74,10 +74,16 @@ const bannerIndexPage = async () => {
                         <p class="banner-text">
                            ${item.movie.content}
                         </p>
-                        <a href="./detail.html" class="btn" movie-slug=${item.movie.slug} todetail>
-                            <p>o</p>
+                        <div style="display: flex; gap: 16px;">
+                        <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${item.movie.slug}>
+                            <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
+                            <span class="span">Watch now</span>
+                        </a>
+                        <a href="./detail.html" class="btn normal" movie-slug=${item.movie.slug} todetail>
                             <span class="span">Detail</span>
                         </a>
+                        </div>
+                        
                     </div>
                 </div>
                `
@@ -106,6 +112,7 @@ const bannerIndexPage = async () => {
     container.innerHTML += banner
     await handleToDetailPage()
     await bannerIndexPageControlHandler()
+    await handleToWatchMoviePage()
 }
 
 export { bannerIndexPage, bannerIndexPageControlHandler }

@@ -132,8 +132,16 @@ body {
 .btn {
     background-color: var(--primary);
 
-    p {
-        transform: translateY(-1px);
+    &.normal {
+        background-color: var(--banner-background) !important;
+        filter: brightness(0.8);
+
+        &:hover,
+        :focus-visible {
+            filter: brightness(1);
+            background-color: var(--banner-background) !important;
+            box-shadow: none !important;
+        }
     }
 
     &:hover,
@@ -1057,6 +1065,10 @@ body {
 
         &.active {
             filter: brightness(1);
+        }
+
+        &.full {
+            filter: brightness(1) !important;
         }
     }
 }

@@ -23,6 +23,14 @@ const handleToDetailPage = async () => {
 
     })
 }
+const handleToWatchMoviePage = () => {
+    document.addEventListener("click", (event) => {
+        const item = event.target.closest("[watch-now-btn]")
+        if (item) {
+            localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
+        }
 
+    })
+}
 
-export { addEventOnElements, handleToDetailPage }
+export { addEventOnElements, handleToDetailPage, handleToWatchMoviePage }

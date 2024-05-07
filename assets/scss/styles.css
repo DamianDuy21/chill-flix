@@ -110,8 +110,15 @@ body {
 .btn {
   background-color: var(--primary);
 }
-.btn p {
-  transform: translateY(-1px);
+.btn.normal {
+  background-color: var(--banner-background) !important;
+  filter: brightness(0.8);
+}
+.btn.normal:hover,
+.btn.normal :focus-visible {
+  filter: brightness(1);
+  background-color: var(--banner-background) !important;
+  box-shadow: none !important;
 }
 .btn:hover,
 .btn :focus-visible {
@@ -859,6 +866,9 @@ body {
 }
 .episode-list .episode-btn.active {
   filter: brightness(1);
+}
+.episode-list .episode-btn.full {
+  filter: brightness(1) !important;
 }
 
 .footer {

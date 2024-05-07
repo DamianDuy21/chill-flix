@@ -24,7 +24,7 @@ const bannerDetailPage = async () => {
             <div class="detail-box">
                 <div class="detail-content">
                     <h1 class="heading">${result.movie.name}</h1>
-                    <a href="./watchMovie.html" class="btn">
+                    <a href="./watchMovie.html" class="btn" watch-now-btn>
                         <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
                         <span class="span">Watch now</span>
                     </a>

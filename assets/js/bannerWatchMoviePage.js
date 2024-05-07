@@ -33,13 +33,12 @@ const bannerWatchMoviePage = async () => {
 
     const container = document.querySelector("[page-content]")
     container.classList.add("watch-movie-page")
-
     const video = `
         <div class="video-wrapper">
                 ${result.episodes[0].server_data.map((item) => {
         if (item.name == localStorage.getItem("episode")) {
             return `
-                    <iframe src=${item.link_embed} 
+                    <iframe src= ${item.link_embed}
                         frameborder="0" class="video" allow="fullscreen"></iframe>
                         `
         }
@@ -55,6 +54,11 @@ const bannerWatchMoviePage = async () => {
             <div class="episode-list">
             ${result.episodes[0].server_data.map((item, index) => {
         if (item.name == episode) {
+            if (episode == "Full") {
+                return `
+                    <button class="episode-btn btn full" episode-btn>${item.name}</button>
+                    `
+            }
             return `
                     <button class="episode-btn btn active" episode-btn>${item.name}</button>
                     `
