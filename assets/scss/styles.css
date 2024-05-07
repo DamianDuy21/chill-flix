@@ -83,7 +83,7 @@ html {
 }
 
 body {
-  background-color: var(--background);
+  background-color: var(--surface);
   color: var(--on-background);
   font-size: var(--fs-body);
   line-height: 1.5;
@@ -101,10 +101,6 @@ body {
   background-color: var(--banner-background);
   border-radius: var(--radius-8);
   width: 8px;
-}
-
-.body {
-  background-color: var(--surface);
 }
 
 .btn {

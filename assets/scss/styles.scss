@@ -103,7 +103,7 @@ html {
 }
 
 body {
-    background-color: var(--background);
+    background-color: var(--surface);
     color: var(--on-background);
     font-size: var(--fs-body);
     line-height: 1.5;
@@ -125,9 +125,7 @@ body {
 
 
 //REUSED STYLE
-body {
-    background-color: var(--surface) !important;
-}
+
 
 .btn {
     background-color: var(--primary);
