@@ -52,8 +52,6 @@ const sliderList = async (data, title, slug) => {
     container.innerHTML += movieList;
     await handleToDetailPage();
 
-    const showMoreBtn = document.querySelector("[show-more-btn]");
-
     // showMoreBtn.addEventListener("click", handleShowMoreBtn);
     container.addEventListener("click", (event) => {
         const target = event.target.closest("[show-more-btn]");

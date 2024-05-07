@@ -2,6 +2,7 @@ import { getCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_SEARCH_CATEGORY } from "./api.js";
 import bannerWatchMoviePage from "./bannerWatchMoviePage.js";
 import { getMoviesByAPI } from "./getDataAPI.js";
+import { handleCategoryAlikeMoviesList } from "./global.js";
 import { handleResize } from "./handleResize.js";
 import headerBox from "./headerBox.js";
 import { sidebar } from "./sidebar.js";
@@ -20,7 +21,7 @@ const watchMoviePageRender = async () => {
     }
     await bannerWatchMoviePage()
 
-    const movieAlike = await getCookie("movie-alike")
+    const movieAlike = await handleCategoryAlikeMoviesList(getCookie("movie-alike"), getCookie("movie-slug"))
     // const movieAlike = await localStorage.getItem("movie-alike")
     const api1 = await API_SEARCH_CATEGORY + movieAlike
     const data1 = await getMoviesByAPI(api1)
