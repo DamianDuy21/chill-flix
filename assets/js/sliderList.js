@@ -7,9 +7,9 @@ const sliderList = async (data, title, slug) => {
     const container = document.querySelector("[page-content]");
 
     const handleShowMoreBtn = () => {
-        setCookie("search-slug", slug, 0.5)
-        setCookie("search-type", "show-more-btn", 0.5)
-        setCookie("search-name", title, 0.5)
+        setCookie("search-slug", slug, 1)
+        setCookie("search-type", "show-more-btn", 1)
+        setCookie("search-name", title, 1)
         // localStorage.setItem("search-slug", slug);
         // localStorage.setItem("search-type", "show-more-btn");
         // localStorage.setItem("search-name", title);

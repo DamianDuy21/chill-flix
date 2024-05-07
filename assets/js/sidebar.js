@@ -14,8 +14,8 @@ const sidebar = async () => {
         document.addEventListener("click", (event) => {
             const cate = event.target.closest("[sidebar-link]")
             if (cate) {
-                setCookie("search-name", cate.innerHTML, 0.5)
-                setCookie("search-slug", cate.getAttribute("search-slug"), 0.5)
+                setCookie("search-name", cate.innerHTML, 1)
+                setCookie("search-slug", cate.getAttribute("search-slug"), 1)
                 // localStorage.setItem("search-name", cate.innerHTML)
                 // localStorage.setItem("search-slug", cate.getAttribute("search-slug"))
             }
@@ -57,7 +57,7 @@ const sidebar = async () => {
             sidebar.classList.toggle("active")
             siderbarBtn.classList.toggle("active")
             overlay.classList.toggle("active")
-            setCookie("search-type", "sidebar", 0.5)
+            setCookie("search-type", "sidebar", 1)
             // localStorage.setItem("search-type", "sidebar")
         })
     }

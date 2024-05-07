@@ -12,7 +12,7 @@ const handleEpisode = () => {
             item.classList.remove("active");
         });
         episode.classList.add("active")
-        setCookie("episode", episode.innerHTML, 0.5)
+        setCookie("episode", episode.innerHTML, 1)
         // localStorage.setItem("episode", episode.innerHTML)
         window.location.reload()
     })
@@ -35,7 +35,7 @@ const bannerWatchMoviePage = async () => {
     else {
         if (result.episodes[0].server_data[0]) {
             episode = result.episodes[0].server_data[0].name
-            setCookie("episode", episode, 0.5)
+            setCookie("episode", episode, 1)
             // localStorage.setItem("episode", episode)
         }
         else {
