@@ -1,3 +1,4 @@
+import { setCookie } from "../helper/cookies.js";
 import { addEventOnElements } from "./global.js";
 
 const headerBox = async () => {
@@ -14,6 +15,9 @@ const headerBox = async () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const searchKey = (e.target[0].value)
+        setCookie("search-slug", searchKey, 0.5)
+        setCookie("search-slug", searchKey, 0.5)
+        setCookie("search-type", "header-box", 0.5)
         localStorage.setItem("search-slug", searchKey)
         localStorage.setItem("search-name", searchKey)
         localStorage.setItem("search-type", "header-box")

@@ -1,5 +1,7 @@
 'use strict';
 
+import { setCookie } from "../helper/cookies.js";
+
 const addEventOnElements = function (elements, eventType, callBack) {
     for (const e of elements) {
         e.addEventListener(eventType, callBack)
@@ -16,8 +18,8 @@ const addEventOnElements = function (elements, eventType, callBack) {
 const handleToDetailPage = async () => {
     document.addEventListener("click", (event) => {
         const item = event.target.closest("[todetail]")
-        // localStorage.setItem("movie-slug", "")
         if (item) {
+            setCookie("movie-slug", item.getAttribute("movie-slug"), 0.5)
             localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 
@@ -27,6 +29,7 @@ const handleToWatchMoviePage = () => {
     document.addEventListener("click", (event) => {
         const item = event.target.closest("[watch-now-btn]")
         if (item) {
+            setCookie("movie-slug", item.getAttribute("movie-slug"), 0.5)
             localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 

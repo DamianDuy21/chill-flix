@@ -1,3 +1,5 @@
+
+import { setCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM } from "./api.js";
 import { handleToDetailPage } from "./global.js";
 
@@ -5,6 +7,9 @@ const sliderList = async (data, title, slug) => {
     const container = document.querySelector("[page-content]");
 
     const handleShowMoreBtn = () => {
+        setCookie("search-slug", slug, 0.5)
+        setCookie("search-type", "show-more-btn", 0.5)
+        setCookie("search-name", title, 0.5)
         localStorage.setItem("search-slug", slug);
         localStorage.setItem("search-type", "show-more-btn");
         localStorage.setItem("search-name", title);

@@ -1,3 +1,4 @@
+import { setCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
 
 {/* <iframe src=${result.episodes[0].server_data[0].link_embed} */ }
@@ -11,6 +12,7 @@ const handleEpisode = () => {
             item.classList.remove("active");
         });
         episode.classList.add("active")
+        setCookie("episode", episode.innerHTML, 0.5)
         localStorage.setItem("episode", episode.innerHTML)
         window.location.reload()
     })
@@ -29,6 +31,7 @@ const bannerWatchMoviePage = async () => {
     else {
         if (result.episodes[0].server_data[0]) {
             episode = result.episodes[0].server_data[0].name
+            setCookie("episode", episode, 0.5)
             localStorage.setItem("episode", episode)
         }
         else {
