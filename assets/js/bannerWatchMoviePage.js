@@ -3,7 +3,7 @@ import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
 {/* <iframe src=${result.episodes[0].server_data[0].link_embed} */ }
 // frameborder="0" class="video" allow="fullscreen"></iframe>
 
-
+let movieStatus = true
 const handleEpisode = () => {
     document.addEventListener("click", (event) => {
         const episode = event.target.closest("[episode-btn]")
@@ -27,22 +27,29 @@ const bannerWatchMoviePage = async () => {
         episode = localStorage.getItem("episode")
     }
     else {
-        episode = result.episodes[0].server_data[0].name
-        localStorage.setItem("episode", episode)
+        if (result.episodes[0].server_data[0]) {
+            episode = result.episodes[0].server_data[0].name
+            localStorage.setItem("episode", episode)
+        }
+        else {
+            movieStatus = false
+        }
     }
 
     const container = document.querySelector("[page-content]")
     container.classList.add("watch-movie-page")
-    const video = `
+    let video = ``
+    if (movieStatus) {
+        video = `
         <div class="video-wrapper">
                 ${result.episodes[0].server_data.map((item) => {
-        if (item.name == localStorage.getItem("episode")) {
-            return `
+            if (item.name == localStorage.getItem("episode")) {
+                return `
                     <iframe src= ${item.link_embed}
                         frameborder="0" class="video" allow="fullscreen"></iframe>
                         `
-        }
-    }).join("")}
+            }
+        }).join("")}
                 
         </div>
         <div class="movie-detail ">
@@ -53,28 +60,37 @@ const bannerWatchMoviePage = async () => {
 
             <div class="episode-list">
             ${result.episodes[0].server_data.map((item, index) => {
-        if (item.name == episode) {
-            if (episode == "Full") {
-                return `
+            if (item.name == episode) {
+                if (episode == "Full") {
+                    return `
                     <button class="episode-btn btn full" episode-btn>${item.name}</button>
                     `
-            }
-            return `
+                }
+                return `
                     <button class="episode-btn btn active" episode-btn>${item.name}</button>
                     `
-        }
-        else {
-            return `
+            }
+            else {
+                return `
                     <button class="episode-btn btn" episode-btn>${item.name}</button>
                     `
-        }
+            }
 
-    }).join("")}
+        }).join("")}
                 
             </div>
         </div>
     </div>
     `
+    }
+    else {
+        video = `
+            <div style="padding: 36px 0 64px 0">
+                <h3 class="title-large">Phim đang được cập nhật...</h3>
+            </div>
+        `
+    }
+
 
     container.innerHTML += video
     await handleEpisode()
