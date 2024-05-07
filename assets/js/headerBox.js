@@ -16,7 +16,7 @@ const headerBox = async () => {
         e.preventDefault()
         const searchKey = (e.target[0].value)
         setCookie("search-slug", searchKey, 1)
-        setCookie("search-slug", searchKey, 1)
+        setCookie("search-name", searchKey, 1)
         setCookie("search-type", "header-box", 1)
         // localStorage.setItem("search-slug", searchKey)
         // localStorage.setItem("search-name", searchKey)
