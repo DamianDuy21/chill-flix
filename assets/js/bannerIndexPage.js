@@ -75,11 +75,11 @@ const bannerIndexPage = async () => {
                            ${item.movie.content}
                         </p>
                         <div style="display: flex; gap: 16px;">
-                        <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${item.movie.slug}>
+                        <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${item.movie.slug} movie-alike=${item.movie.category[0].slug}>
                             <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
                             <span class="span">Watch now</span>
                         </a>
-                        <a href="./detail.html" class="btn normal" movie-slug=${item.movie.slug} todetail>
+                        <a href="./detail.html" class="btn normal" movie-slug=${item.movie.slug} movie-alike=${item.movie.category[0].slug} todetail>
                             <span class="span">Detail</span>
                         </a>
                         </div>

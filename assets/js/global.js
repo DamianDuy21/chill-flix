@@ -15,6 +15,7 @@ const handleToDetailPage = async () => {
         const item = event.target.closest("[todetail]")
         if (item) {
             setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
+            setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
             // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 
@@ -25,6 +26,7 @@ const handleToWatchMoviePage = () => {
         const item = event.target.closest("[watch-now-btn]")
         if (item) {
             setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
+            setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
             // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 

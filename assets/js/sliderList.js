@@ -38,6 +38,7 @@ const sliderList = async (data, title, slug) => {
                                 <a href="./detail.html" class="card-btn" 
                                     title=${item.movie.name}
                                     movie-slug=${item.movie.slug}
+                                    movie-alike=${item.movie.category[0].slug}
                                     todetail
                                 ></a>
                             </div>

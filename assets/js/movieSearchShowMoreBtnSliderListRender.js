@@ -33,7 +33,9 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                 if (!data || !data.movie) {
                     return;
                 }
-
+                if (classify == "phim-lien-quan" && data.movie.name == getCookie("movie-name")) {
+                    return;
+                }
                 return `
                     <div class="movie-card">
                         <div class="poster-box card-banner">
@@ -46,6 +48,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                         <a href="./detail.html" class="card-btn" 
                         title=${data.movie.name}
                         movie-slug=${data.movie.slug}
+                        movie-alike=${data.movie.category[0].slug}
                         todetail
                         ></a>
                     </div>

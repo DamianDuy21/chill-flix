@@ -1,5 +1,6 @@
 import { getCookie, setCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
+import { handleToWatchMoviePage } from "./global.js";
 
 
 const bannerDetailPage = async () => {
@@ -12,7 +13,7 @@ const bannerDetailPage = async () => {
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     setCookie("movie-name", result.movie.name, 1)
-    setCookie("movie-alike", result.movie.category[0].slug, 1)
+    // setCookie("movie-alike", result.movie.category[0].slug, 1)
     // localStorage.setItem("movie-name", result.movie.name)
     // localStorage.setItem("movie-alike", result.movie.category[0].slug)
     let trailer_url = result.movie.trailer_url.replace("/watch?v=", "/embed/")
@@ -32,7 +33,7 @@ const bannerDetailPage = async () => {
             <div class="detail-box">
                 <div class="detail-content">
                     <h1 class="heading">${result.movie.name}</h1>
-                    <a href="./watchMovie.html" class="btn" watch-now-btn>
+                    <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${result.movie.slug} movie-alike=${result.movie.category[0].slug}>
                         <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
                         <span class="span">Watch now</span>
                     </a>
@@ -101,6 +102,7 @@ const bannerDetailPage = async () => {
 
 
     container.innerHTML += movieDetail
+    handleToWatchMoviePage()
 
 }
 

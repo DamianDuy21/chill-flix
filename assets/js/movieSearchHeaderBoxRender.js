@@ -36,6 +36,7 @@ const movieSearchHeaderBoxRender = async () => {
                     <a href="./detail.html" class="card-btn" 
                     title=${data.movie.name}
                     movie-slug=${data.movie.slug}
+                    movie-alike=${data.movie.category[0].slug}
                     todetail
                     ></a>
                 </div>
