@@ -1,10 +1,11 @@
-import { setCookie } from "../helper/cookies.js"
+import { getCookie, setCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
 
 
 const bannerDetailPage = async () => {
 
-    const movieSlug = localStorage.getItem("movie-slug")
+    // const movieSlug = localStorage.getItem("movie-slug")
+    const movieSlug = getCookie("movie-slug")
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     setCookie("movie-name", result.movie.name, 0.5)

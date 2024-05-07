@@ -1,10 +1,12 @@
+import { getCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_SEARCH_CATEGORY, API_TELEVISIONSERIES } from "./api.js"
 import { handleToDetailPage } from "./global.js"
 let page = 1
 let limit = 10
 const movieSearchShowMoreBtnSliderListRender = async () => {
-    const classify = localStorage.getItem("search-slug")
 
+    const classify = getCookie("search-slug")
+    // const classify = localStorage.getItem("search-slug")
     const fetchMovie = async () => {
 
         const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
@@ -19,7 +21,8 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
             api = API_TELEVISIONSERIES
         }
         else if (classify == "phim-lien-quan") {
-            api = API_SEARCH_CATEGORY + localStorage.getItem("movie-alike")
+            // api = API_SEARCH_CATEGORY + localStorage.getItem("movie-alike")
+            api = API_SEARCH_CATEGORY + getCookie("movie-alike")
         }
         api = api + `?limit=${limit}` + `&page=${page}`
         const respone = await fetchAPI(api)
@@ -67,14 +70,14 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
 
     const container = document.querySelector("[page-content]")
 
-    let movieName = classify == "phim-lien-quan" ? (`- ` + localStorage.getItem("movie-name")) : ('')
+    let movieName = classify == "phim-lien-quan" ? (`- ` + getCookie("movie-name")) : ('')
     console.log(movieName)
 
     const showMoreBtnSearchList = `
     <section class="searchShowMoreBtn-list" searchShowMoreBtn-list>
         <p class="label">Results for</p>
         <div class="title-wrapper">
-        <h3 class="title-large">${localStorage.getItem("search-name")} ${movieName}</h3>
+        <h3 class="title-large">${getCookie("search-name")} ${movieName}</h3>
 
         </div>
         <div class="grid-list" showMoreBtn-grid-list>

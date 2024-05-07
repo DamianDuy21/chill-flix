@@ -1,3 +1,4 @@
+import { getCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_CATEGORY } from "./api.js";
 import { handleToDetailPage } from "./global.js";
 
@@ -12,7 +13,8 @@ const movieSearchSidebarRender = async () => {
         if (loadMoreBtn) {
             loadMoreBtn.classList.add("loading")
         }
-        const api = API_SEARCH_CATEGORY + localStorage.getItem("search-slug") + `?page=${page}`;
+        const api = API_SEARCH_CATEGORY + getCookie("search-slug") + `?page=${page}`;
+        // const api = API_SEARCH_CATEGORY + localStorage.getItem("search-slug") + `?page=${page}`;
         const respone = await fetchAPI(api);
         console.log(respone.data.params.pagination.totalPages)
         maxClick = respone.data.params.pagination.totalPages
@@ -64,7 +66,7 @@ const movieSearchSidebarRender = async () => {
     <section class="searchSidebar-list" searchSidebar-list>
         <p class="label">Results for</p>
         <div class="title-wrapper">
-            <h3 class="title-large">${localStorage.getItem("search-name")}</h3>
+            <h3 class="title-large">${getCookie("search-name")}</h3>
         </div>
         <div class="grid-list" sidebar-grid-list>
 

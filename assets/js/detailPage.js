@@ -1,3 +1,4 @@
+import { getCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_NEW_MOVIE, API_SEARCH_CATEGORY } from "./api.js";
 import bannerDetailPage from "./bannerDetailPage.js";
 import { getMoviesByAPI } from "./getDataAPI.js";
@@ -19,7 +20,8 @@ const detailPageRender = async () => {
     }
     await bannerDetailPage()
 
-    const movieAlike = await localStorage.getItem("movie-alike")
+    const movieAlike = await getCookie("movie-alike")
+    // const movieAlike = await localStorage.getItem("movie-alike")
     const api1 = await API_SEARCH_CATEGORY + movieAlike
     const data1 = await getMoviesByAPI(api1)
     await sliderList(data1, "Phim liên quan", "phim-lien-quan")

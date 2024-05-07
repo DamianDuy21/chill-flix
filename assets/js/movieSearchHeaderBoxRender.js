@@ -1,3 +1,4 @@
+import { getCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_MOVIE } from "./api.js"
 import { handleToDetailPage } from "./global.js"
 
@@ -9,7 +10,7 @@ const movieSearchHeaderBoxRender = async () => {
         if (loadMoreBtn) {
             loadMoreBtn.classList.add("loading")
         }
-        let api = API_SEARCH_MOVIE + `?keyword=${localStorage.getItem("search-slug")}` + `&limit=${limit}`
+        let api = API_SEARCH_MOVIE + `?keyword=${getCookie("search-slug")}` + `&limit=${limit}`
         // console.log(api)
         const respone = await fetchAPI(api)
         if (respone.data.params.pagination.totalItems == 0) {
@@ -64,7 +65,7 @@ const movieSearchHeaderBoxRender = async () => {
     <section class="searchHeaderBox-list" searchHeaderBox-list>
     <p class="label">Results for</p>
         <div class="title-wrapper">
-            <h3 class="title-large">${localStorage.getItem("search-name")}</h3>
+            <h3 class="title-large">${getCookie("search-name")}</h3>
         </div>
     <div search-not-found style="display: none;">
         <h3 class="title-large"> Không có kết quả tìm kiếm...</h3>

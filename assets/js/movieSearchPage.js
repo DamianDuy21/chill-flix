@@ -1,4 +1,5 @@
 
+import { getCookie } from "../helper/cookies.js";
 import { handleResize } from "./handleResize.js";
 import headerBox from "./headerBox.js";
 import movieSearchHeaderBoxRender from "./movieSearchHeaderBoxRender.js";
@@ -14,7 +15,8 @@ const movieSearchPagePageRender = async () => {
     await sidebar()
     await handleResize()
 
-    const searchType = localStorage.getItem("search-type")
+    const searchType = getCookie("search-type")
+    // const searchType = localStorage.getItem("search-type")
     if (searchType == "header-box") {
         await movieSearchHeaderBoxRender()
     }

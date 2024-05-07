@@ -1,9 +1,10 @@
+import { getCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js";
 
 export const getMoviesByAPI = async (api) => {
     const respone = await fetchAPI(api)
     const result = await Promise.all(respone.data.items.map(async (item) => {
-        if (item.slug != localStorage.getItem("movie-slug")) {
+        if (item.slug != getCookie("movie-slug")) {
             const movie_api = API_DETAIL_MOVIE + item.slug;
             const data = await fetchAPI(movie_api);
             if (!data || !data.movie) {

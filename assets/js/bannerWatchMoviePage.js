@@ -1,4 +1,4 @@
-import { setCookie } from "../helper/cookies.js"
+import { getCookie, setCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
 
 {/* <iframe src=${result.episodes[0].server_data[0].link_embed} */ }
@@ -19,14 +19,15 @@ const handleEpisode = () => {
 }
 const bannerWatchMoviePage = async () => {
 
-    const movieSlug = localStorage.getItem("movie-slug")
+    // const movieSlug = localStorage.getItem("movie-slug")
+    const movieSlug = getCookie("movie-slug")
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     console.log(result)
     console.log(api)
     let episode = ""
-    if (localStorage.getItem("episode")) {
-        episode = localStorage.getItem("episode")
+    if (getCookie("episode")) {
+        episode = getCookie("episode")
     }
     else {
         if (result.episodes[0].server_data[0]) {
@@ -46,7 +47,7 @@ const bannerWatchMoviePage = async () => {
         video = `
         <div class="video-wrapper">
                 ${result.episodes[0].server_data.map((item) => {
-            if (item.name == localStorage.getItem("episode")) {
+            if (item.name == getCookie("episode")) {
                 return `
                     <iframe src= ${item.link_embed}
                         frameborder="0" class="video" allow="fullscreen"></iframe>
