@@ -30,7 +30,7 @@ const headerBox = async () => {
 </a>
 <div class="search-box" search-box>
     <form class="search-wrapper" onsubmit="return false;">
-        <input type="text" name="search" placeholder="Search any movies..." class="search-field" search-field
+        <input type="text" name="search" placeholder="Tìm kiếm phim..." class="search-field" search-field
             autocomplete="off">
         <img src="./assets/images/search.png" width="24" height="24" alt="search" class="leading-icon">
 

@@ -35,7 +35,7 @@ const bannerDetailPage = async () => {
                     <h1 class="heading">${result.movie.name}</h1>
                     <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${result.movie.slug} movie-alike=${result.movie.category[0].slug}>
                         <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
-                        <span class="span">Watch now</span>
+                        <span class="span">Xem ngay</span>
                     </a>
                     <div class="meta-list">
                         

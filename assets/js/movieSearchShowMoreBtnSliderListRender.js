@@ -78,7 +78,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
 
     const showMoreBtnSearchList = `
     <section class="searchShowMoreBtn-list" searchShowMoreBtn-list>
-        <p class="label">Results for</p>
+        <p class="label">Kết quả tìm kiếm</p>
         <div class="title-wrapper">
         <h3 class="title-large">${getCookie("search-name")} ${movieName}</h3>
 
@@ -88,7 +88,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
         
         </div>
 
-        <button class="btn load-more" showMoreBtn-load-more-btn>Load more</button>
+        <button class="btn load-more" showMoreBtn-load-more-btn>Tải thêm</button>
 
     </section>
     `

@@ -19,7 +19,8 @@
     --bottom-overlay: 180deg, hsla(250, 13%, 11%, 0), hsla(250, 13%, 11%, 1);
 
     //text font
-    --ff-poppins-sans: 'Poppins', sans-serif;
+    // --ff-poppins-sans: 'Poppins', sans-serif;
+    --ff-poppins-sans: 'Open Sans', sans-serif;
 
     --fs-heading: 4rem;
     --fs-title-lg: 2.6rem;
@@ -662,6 +663,7 @@ body {
     margin-bottom: 36px;
 
     .banner-slider {
+
         .slider-item {
             position: absolute;
             top: 0;
@@ -1168,8 +1170,8 @@ body {
 
         .banner-slider {
             .banner-content {
-                bottom: 194px !important;
-                transform: translateY(55%);
+                bottom: 32px !important;
+                // transform: translateY(55%);
                 left: 50px;
                 max-width: 45%;
 

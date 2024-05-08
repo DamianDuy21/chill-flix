@@ -65,14 +65,14 @@ const movieSearchSidebarRender = async () => {
 
     const sidebarSearchList = `
     <section class="searchSidebar-list" searchSidebar-list>
-        <p class="label">Results for</p>
+        <p class="label">Kết quả tìm kiếm</p>
         <div class="title-wrapper">
             <h3 class="title-large">${getCookie("search-name")}</h3>
         </div>
         <div class="grid-list" sidebar-grid-list>
 
         </div>
-        <button class="btn load-more" sidebar-load-more-btn>Load more</button>
+        <button class="btn load-more" sidebar-load-more-btn>Tải thêm</button>
     </section>
     `;
     // 
