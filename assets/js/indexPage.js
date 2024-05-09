@@ -5,9 +5,11 @@ import { sidebar } from "./sidebar.js";
 import headerBox from "./headerBox.js";
 import { getMoviesByAPI } from "./getDataAPI.js";
 import { handleResize } from "./handleResize.js";
+import { handleUnAuthened } from "./global.js";
 
 
 const indexPageRender = async () => {
+    await handleUnAuthened()
     await headerBox()
     await sidebar()
     await handleResize()

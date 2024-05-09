@@ -1,7 +1,7 @@
 'use strict';
 
-import { setCookie } from "../helper/cookies.js";
-import fetchAPI, { API_CATEGORY, API_DETAIL_MOVIE, API_SEARCH_CATEGORY } from "./api.js";
+import { getCookie, setCookie } from "../helper/cookies.js";
+import fetchAPI, { API_CATEGORY, API_DETAIL_MOVIE, API_SEARCH_CATEGORY, authenUser } from "./api.js";
 
 const timeOutCookie = 4 * 60 * 60 * 1000
 
@@ -59,9 +59,33 @@ const handleCategoryAlikeMoviesList = async (movieAlike, movieSlug) => {
     else {
         return movieAlike
     }
-
-
-
 }
 
-export { addEventOnElements, handleToDetailPage, handleToWatchMoviePage, timeOutCookie, handleCategoryAlikeMoviesList }
+const handleUnAuthened = async () => {
+    let email = getCookie("email")
+    let password = getCookie("password")
+    const user = await authenUser(email, password);
+    if (user.data.length == 0) {
+        window.location.href = "signIn.html";
+    } else {
+    }
+}
+const handleAuthened = async () => {
+    let email = getCookie("email")
+    let password = getCookie("password")
+    const user = await authenUser(email, password);
+    if (user.data.length > 0) {
+        window.location.href = "index.html";
+    } else {
+    }
+}
+
+export {
+    addEventOnElements,
+    handleToDetailPage,
+    handleToWatchMoviePage,
+    timeOutCookie,
+    handleCategoryAlikeMoviesList,
+    handleAuthened,
+    handleUnAuthened
+}

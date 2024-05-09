@@ -9,7 +9,7 @@ export const API_NEW_MOVIE = `https://phimapi.com/danh-sach/phim-moi-cap-nhat`
 export const API_DETAIL_MOVIE = `https://phimapi.com/phim/`
 export const API_SEARCH_MOVIE = `https://phimapi.com/v1/api/tim-kiem`
 export const API_USERS = `https://chill-flix-backend-a4bb.onrender.com/v1/api/users`
-
+export const API_USER = `https://chill-flix-backend-a4bb.onrender.com/v1/api/user`
 
 const fetchAPI = async (API_KEY) => {
     try {
@@ -20,14 +20,62 @@ const fetchAPI = async (API_KEY) => {
     }
 }
 
-export const getUser = async (email, password) => {
+export const authenUser = async (email, password) => {
     try {
         let api = API_USERS
         if (email && password) {
             api += `?email=${email}&password=${password}`
+            const response = await fetch(api)
+            return await response.json()
         }
-        const response = await fetch(api)
-        return await response.json()
+        else {
+            return { er: 500, data: [] }
+        }
+
+    } catch (error) {
+        console.log('Error', error)
+    }
+}
+
+export const editUser = async (data) => {
+    try {
+        let api = API_USER
+        if (data) {
+            const response = await fetch(api, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            return await response.json()
+        }
+        else {
+            return { er: 500, data: [] }
+        }
+
+    } catch (error) {
+        console.log('Error', error)
+    }
+}
+
+export const addUser = async (data) => {
+    try {
+        let api = API_USER
+        if (data) {
+            const response = await fetch(api, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            return await response.json()
+        }
+        else {
+            return { er: 500, data: [] }
+        }
+
     } catch (error) {
         console.log('Error', error)
     }

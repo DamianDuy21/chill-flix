@@ -10,15 +10,15 @@ import { sidebar } from "./sidebar.js";
 
 
 const movieSearchPagePageRender = async () => {
-
-    await headerBox()
-    await sidebar()
-    await handleResize()
-
     const searchType = getCookie("search-type")
     if (!searchType) {
         window.location.href = "index.html";
     }
+    await headerBox()
+    await sidebar()
+    await handleResize()
+
+
     // const searchType = localStorage.getItem("search-type")
     if (searchType == "header-box") {
         await movieSearchHeaderBoxRender()

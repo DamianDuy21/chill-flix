@@ -10,7 +10,10 @@ import sliderList from "./sliderList.js";
 
 
 const watchMoviePageRender = async () => {
-
+    const movieSlug = getCookie("movie-slug")
+    if (!movieSlug) {
+        window.location.href = "index.html";
+    }
     await headerBox()
     await sidebar()
     await handleResize()

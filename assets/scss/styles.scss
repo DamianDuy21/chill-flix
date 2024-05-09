@@ -215,6 +215,18 @@ body {
     }
 }
 
+@keyframes slideTopDown {
+    0% {
+        opacity: 0.6;
+        transform: translateY(-12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 .heading,
 .title,
 .title-large {
@@ -497,7 +509,69 @@ body {
         .close {
             display: none;
         }
+    }
 
+    .user-btn {
+        padding: 12px;
+        border-radius: var(--radius-8);
+        position: relative;
+        transition: var(--transition-short);
+
+        &:hover {
+            img {
+                animation: loading 500ms linear;
+            }
+
+        }
+
+        &.active {
+            .user-options {
+                display: flex;
+            }
+        }
+
+        .user-options {
+            min-width: 128px;
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            background-color: var(--banner-background);
+            flex-direction: column;
+            align-items: end;
+            border-radius: var(--radius-8);
+            padding: 12px 12px 14px 12px;
+            gap: 12px;
+            z-index: 997;
+            display: none;
+            animation: slideTopDown 200ms linear;
+            transition: var(--transition-short);
+
+            .user-option {
+                width: 100%;
+                text-align: right;
+                font-size: 16px;
+                filter: brightness(0.8);
+                transition: var(--transition-short);
+                // background-color: red;
+
+                &:hover,
+                :focus-visible {
+                    filter: brightness(1);
+                }
+            }
+        }
+
+        .user-name {
+            position: absolute;
+            top: -1px;
+            right: 0;
+            display: none;
+            font-size: 18px;
+        }
+
+        img {
+            // background-color: red;
+        }
 
     }
 }
@@ -1160,6 +1234,7 @@ body {
             margin-top: 40px;
 
             .authen-btn {
+                position: relative;
                 max-width: 100%;
                 width: 100%;
                 background-color: var(--primary);
@@ -1168,6 +1243,41 @@ body {
                 border-radius: var(--radius-8);
                 font-size: 16px;
                 transition: var(--transition-short);
+
+                span {
+                    position: relative;
+                    transition: var(--transition-short);
+                }
+
+                &::before {
+
+                    position: absolute;
+                    top: calc(50% - 11px);
+                    left: calc(50% - 60px);
+                    content: "";
+                    width: 16px;
+                    height: 16px;
+                    border: 3px solid var(--white);
+                    border-radius: var(--radius-24);
+                    border-right-color: transparent;
+                    animation: loading 500ms linear infinite;
+                    display: none;
+
+                }
+
+                &.loading {
+                    cursor: alias;
+                    pointer-events: none;
+                    background-color: var(--primary-variant) !important;
+
+                    &::before {
+                        display: block;
+                    }
+
+                    span {
+                        left: 12px;
+                    }
+                }
 
                 &:hover,
                 :focus-visible {
@@ -1180,6 +1290,10 @@ body {
 
                     &:hover {
                         background-color: var(--white-alpha-20);
+                    }
+
+                    &::before {
+                        display: none;
                     }
                 }
             }
@@ -1371,6 +1485,24 @@ body {
 
         .menu-btn {
             display: none;
+        }
+
+        .user-btn {
+            min-width: 60px;
+            margin-left: 4px;
+
+            .user-name {
+                display: block;
+            }
+
+            .user-options {
+                top: calc(100% + 24px);
+                right: -12px;
+            }
+
+            img {
+                display: none;
+            }
         }
     }
 

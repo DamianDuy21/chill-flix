@@ -177,6 +177,16 @@ body {
     transform: rotate(1turn);
   }
 }
+@keyframes slideTopDown {
+  0% {
+    opacity: 0.6;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 .heading,
 .title,
 .title-large {
@@ -425,7 +435,52 @@ body {
 .header .menu-btn .close {
   display: none;
 }
-
+.header .user-btn {
+  padding: 12px;
+  border-radius: var(--radius-8);
+  position: relative;
+  transition: var(--transition-short);
+}
+.header .user-btn:hover img {
+  animation: loading 500ms linear;
+}
+.header .user-btn.active .user-options {
+  display: flex;
+}
+.header .user-btn .user-options {
+  min-width: 128px;
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background-color: var(--banner-background);
+  flex-direction: column;
+  align-items: end;
+  border-radius: var(--radius-8);
+  padding: 12px 12px 14px 12px;
+  gap: 12px;
+  z-index: 997;
+  display: none;
+  animation: slideTopDown 200ms linear;
+  transition: var(--transition-short);
+}
+.header .user-btn .user-options .user-option {
+  width: 100%;
+  text-align: right;
+  font-size: 16px;
+  filter: brightness(0.8);
+  transition: var(--transition-short);
+}
+.header .user-btn .user-options .user-option:hover,
+.header .user-btn .user-options .user-option :focus-visible {
+  filter: brightness(1);
+}
+.header .user-btn .user-name {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  display: none;
+  font-size: 18px;
+}
 .sidebar {
   position: fixed;
   background-color: var(--surface);
@@ -943,6 +998,7 @@ body {
   margin-top: 40px;
 }
 .authen-container .authen-form .authen-btns .authen-btn {
+  position: relative;
   max-width: 100%;
   width: 100%;
   background-color: var(--primary);
@@ -951,6 +1007,34 @@ body {
   border-radius: var(--radius-8);
   font-size: 16px;
   transition: var(--transition-short);
+}
+.authen-container .authen-form .authen-btns .authen-btn span {
+  position: relative;
+  transition: var(--transition-short);
+}
+.authen-container .authen-form .authen-btns .authen-btn::before {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 60px);
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--white);
+  border-radius: var(--radius-24);
+  border-right-color: transparent;
+  animation: loading 500ms linear infinite;
+  display: none;
+}
+.authen-container .authen-form .authen-btns .authen-btn.loading {
+  cursor: alias;
+  pointer-events: none;
+  background-color: var(--primary-variant) !important;
+}
+.authen-container .authen-form .authen-btns .authen-btn.loading::before {
+  display: block;
+}
+.authen-container .authen-form .authen-btns .authen-btn.loading span {
+  left: 12px;
 }
 .authen-container .authen-form .authen-btns .authen-btn:hover,
 .authen-container .authen-form .authen-btns .authen-btn :focus-visible {
@@ -962,6 +1046,9 @@ body {
 }
 .authen-container .authen-form .authen-btns .authen-btn.normal:hover {
   background-color: var(--white-alpha-20);
+}
+.authen-container .authen-form .authen-btns .authen-btn.normal::before {
+  display: none;
 }
 .authen-container .authen-form .or {
   display: flex;
@@ -1082,6 +1169,20 @@ body {
     width: 360px;
   }
   .header .menu-btn {
+    display: none;
+  }
+  .header .user-btn {
+    min-width: 60px;
+    margin-left: 4px;
+  }
+  .header .user-btn .user-name {
+    display: block;
+  }
+  .header .user-btn .user-options {
+    top: calc(100% + 24px);
+    right: -12px;
+  }
+  .header .user-btn img {
     display: none;
   }
   .sidebar {

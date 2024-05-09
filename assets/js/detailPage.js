@@ -11,6 +11,10 @@ import sliderList from "./sliderList.js";
 
 const detailPageRender = async () => {
 
+    const movieSlug = getCookie("movie-slug")
+    if (!movieSlug) {
+        window.location.href = "index.html";
+    }
     await headerBox()
     await sidebar()
     await handleResize()
@@ -23,7 +27,6 @@ const detailPageRender = async () => {
 
     const movieAlike = await handleCategoryAlikeMoviesList(getCookie("movie-alike"), getCookie("movie-slug"))
     // const movieAlike = await localStorage.getItem("movie-alike")
-    console.log(movieAlike)
     const api1 = await API_SEARCH_CATEGORY + movieAlike
     const data1 = await getMoviesByAPI(api1)
     await sliderList(data1, "Phim liên quan", "phim-lien-quan")

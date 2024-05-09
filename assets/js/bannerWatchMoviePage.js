@@ -24,9 +24,6 @@ const bannerWatchMoviePage = async () => {
 
     // const movieSlug = localStorage.getItem("movie-slug")
     const movieSlug = getCookie("movie-slug")
-    if (!movieSlug) {
-        window.location.href = "index.html";
-    }
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     console.log(result)
