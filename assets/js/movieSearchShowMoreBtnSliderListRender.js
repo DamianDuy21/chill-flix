@@ -33,7 +33,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                 if (!data || !data.movie) {
                     return;
                 }
-                if (classify == "phim-lien-quan" && data.movie.name == getCookie("movie-name")) {
+                if (classify == "phim-lien-quan" && data.movie.slug == getCookie("movie-slug")) {
                     return;
                 }
                 return `

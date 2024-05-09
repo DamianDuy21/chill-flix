@@ -17,6 +17,7 @@ const handleToDetailPage = async () => {
         if (item) {
             setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
             setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
+            setCookie("movie-name", item.getAttribute("movie-name"), 1)
             // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }
 
@@ -28,6 +29,7 @@ const handleToWatchMoviePage = () => {
         if (item) {
             setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
             setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
+            setCookie("movie-name", item.getAttribute("movie-name"), 1)
             setCookie("episode", '')
             // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
         }

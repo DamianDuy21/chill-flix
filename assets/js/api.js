@@ -8,6 +8,9 @@ export const API_COUNTRY = `https://phimapi.com/quoc-gia`
 export const API_NEW_MOVIE = `https://phimapi.com/danh-sach/phim-moi-cap-nhat`
 export const API_DETAIL_MOVIE = `https://phimapi.com/phim/`
 export const API_SEARCH_MOVIE = `https://phimapi.com/v1/api/tim-kiem`
+export const API_USERS = `https://chill-flix-backend-a4bb.onrender.com/v1/api/users`
+
+
 const fetchAPI = async (API_KEY) => {
     try {
         const response = await fetch(API_KEY)
@@ -17,5 +20,17 @@ const fetchAPI = async (API_KEY) => {
     }
 }
 
+export const getUser = async (email, password) => {
+    try {
+        let api = API_USERS
+        if (email && password) {
+            api += `?email=${email}&password=${password}`
+        }
+        const response = await fetch(api)
+        return await response.json()
+    } catch (error) {
+        console.log('Error', error)
+    }
+}
 
 export default fetchAPI

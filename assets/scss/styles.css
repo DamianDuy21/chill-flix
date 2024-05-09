@@ -1,7 +1,7 @@
 :root {
   --background: hsla(220, 17%, 7%, 1);
   --banner-background: hsla(250, 6%, 20%, 1);
-  --white-alpha-20: hsla(0, 0%, 100%, 0.2);
+  --white-alpha-20: hsla(0, 0%, 83%, 0.2);
   --on-background: hsla(220, 100%, 95%, 1);
   --on-surface: hsla(250, 100%, 95%, 1);
   --on-surface-variant: hsla(250, 1%, 44%, 1);
@@ -877,6 +877,118 @@ body {
 }
 .footer p {
   color: var(--text-color);
+}
+
+.authen-background {
+  opacity: 0.4;
+  position: absolute;
+  inset: 0;
+}
+
+.authen-container {
+  width: 100%;
+  height: 100%;
+  padding-inline: 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.authen-container .authen-form {
+  position: relative;
+  box-shadow: var(--shadow-1);
+  background-color: var(--background);
+  padding: 32px 32px 44px 32px;
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--radius-8);
+}
+.authen-container .authen-form .title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.authen-container .authen-form .authen-inputs .input-wrapper {
+  margin-bottom: 24px;
+}
+.authen-container .authen-form .authen-inputs .input-wrapper label {
+  margin-left: 4px;
+  font-size: 16px;
+}
+.authen-container .authen-form .authen-inputs .input-wrapper .input-field {
+  background-color: var(--banner-background);
+  height: 48px;
+  line-height: 48px;
+  padding: 0 0px 0px 12px;
+  outline: none;
+  border-radius: var(--radius-8);
+  transition: var(--transition-short);
+  margin-top: 8px;
+  font-size: 16px;
+}
+.authen-container .authen-form .authen-inputs .input-wrapper .input-field::-moz-placeholder {
+  color: var(--on-surface-variant);
+  font-size: 16px;
+}
+.authen-container .authen-form .authen-inputs .input-wrapper .input-field::placeholder {
+  color: var(--on-surface-variant);
+  font-size: 16px;
+}
+.authen-container .authen-form .authen-inputs .input-wrapper .input-field:hover {
+  box-shadow: 0 0 0 1px var(--on-surface-variant);
+}
+.authen-container .authen-form .authen-inputs .input-wrapper .input-field:focus {
+  box-shadow: 0 0 0 1px var(--on-surface);
+  padding: 0 0px 0px 16px;
+}
+.authen-container .authen-form .authen-btns {
+  margin-top: 40px;
+}
+.authen-container .authen-form .authen-btns .authen-btn {
+  max-width: 100%;
+  width: 100%;
+  background-color: var(--primary);
+  text-align: center;
+  padding: 8px;
+  border-radius: var(--radius-8);
+  font-size: 16px;
+  transition: var(--transition-short);
+}
+.authen-container .authen-form .authen-btns .authen-btn:hover,
+.authen-container .authen-form .authen-btns .authen-btn :focus-visible {
+  background-color: var(--primary-variant);
+  box-shadow: none !important;
+}
+.authen-container .authen-form .authen-btns .authen-btn.normal {
+  background-color: var(--banner-background);
+}
+.authen-container .authen-form .authen-btns .authen-btn.normal:hover {
+  background-color: var(--white-alpha-20);
+}
+.authen-container .authen-form .or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 16px;
+  filter: brightness(0.8);
+  position: relative;
+}
+.authen-container .authen-form .or::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: 1px solid #ccc;
+  z-index: 100;
+}
+.authen-container .authen-form .or span {
+  z-index: 101 !important;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  width: 100%;
+  background-color: var(--background);
+  padding: 0 12px;
 }
 
 @media (min-width: 575px) {
