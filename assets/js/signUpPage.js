@@ -40,7 +40,7 @@ const handleSubmit = async (e) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector('.authen-form');
+    const form = document.querySelector('[authen-form]');
     form.addEventListener('submit', handleSubmit);
 
     const toSignUpBtn = document.querySelector("[to-sign-in-btn]")
@@ -51,7 +51,7 @@ const signUpPage = () => {
     body.innerHTML = `
     <img src="./assets/images/authen-page-background.jpg" alt="" class="img-cover authen-background">
     <div class="authen-container">
-        <form class="authen-form" autocomplete=off>
+        <form class="authen-form" authen-form autocomplete=off>
             <div class="title">
                 <h3 class="title-large">Đăng kí</h3>
             </div>
