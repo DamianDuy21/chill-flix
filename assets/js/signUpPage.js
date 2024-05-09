@@ -39,13 +39,6 @@ const handleSubmit = async (e) => {
     }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector('[authen-form]');
-    form.addEventListener('submit', handleSubmit);
-
-    const toSignUpBtn = document.querySelector("[to-sign-in-btn]")
-    toSignUpBtn.addEventListener("click", handleToSignInPage)
-});
 const signUpPage = () => {
     const body = document.querySelector("body");
     body.innerHTML = `
@@ -81,6 +74,12 @@ const signUpPage = () => {
         </form>
     </div>
     `;
+
+    const form = document.querySelector('[authen-form]');
+    form.addEventListener('submit', handleSubmit);
+
+    const toSignUpBtn = document.querySelector("[to-sign-in-btn]")
+    toSignUpBtn.addEventListener("click", handleToSignInPage)
 };
 
 signUpPage();

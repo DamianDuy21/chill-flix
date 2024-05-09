@@ -46,13 +46,6 @@ const handleSubmit = async (e) => {
 };
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector('[authen-form]');
-    form.addEventListener('submit', handleSubmit);
-
-    const toSignUpBtn = document.querySelector("[to-sign-up-btn]")
-    toSignUpBtn.addEventListener("click", handleToSignUpPage)
-});
 
 const signInPage = async () => {
     await handleAuthened()
@@ -92,6 +85,12 @@ const signInPage = async () => {
         </div>
     
         `;
+    const form = document.querySelector('[authen-form]');
+    form.addEventListener('submit', handleSubmit);
+    console.log(1)
+
+    const toSignUpBtn = document.querySelector("[to-sign-up-btn]")
+    toSignUpBtn.addEventListener("click", handleToSignUpPage)
 
 };
 
