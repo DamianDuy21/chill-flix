@@ -1,15 +1,18 @@
 import { getCookie, setCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
-import { handleToWatchMoviePage } from "./global.js";
+import { handleToWatchMoviePage, handleSaveMovie, handleMovieInSaveList, handleUnSaveMovie } from "./global.js";
 
 
 const bannerDetailPage = async () => {
-
+    let email = getCookie("email")
+    let password = getCookie("password")
     // const movieSlug = localStorage.getItem("movie-slug")
     const movieSlug = getCookie("movie-slug")
     if (!movieSlug) {
         window.location.href = "index.html";
     }
+    const alreadySaved = await handleMovieInSaveList(email, password, movieSlug)
+    console.log(alreadySaved)
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
     setCookie("movie-name", result.movie.name, 1)
@@ -33,10 +36,21 @@ const bannerDetailPage = async () => {
             <div class="detail-box">
                 <div class="detail-content">
                     <h1 class="heading">${result.movie.name}</h1>
+                    <div style="display: flex; gap: 16px;">
                     <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${result.movie.slug} movie-alike=${result.movie.category[0].slug}>
                         <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
                         <span class="span">Xem ngay</span>
                     </a>
+                    ${alreadySaved ? (`<button class="btn normal" movie-slug=${result.movie.slug} unsave-movie-btn>
+                        <span class="span">Bỏ lưu phim</span>
+                    </button>`)
+            :
+            (`<button class="btn normal"  movie-slug=${result.movie.slug} save-movie-btn>
+                        <span class="span">Lưu phim</span>
+                    </button>`)}
+                    
+                    </div>
+                    
                     <div class="meta-list">
                         
                         <div class="meta-item">${result.movie.year}</div>
@@ -54,8 +68,8 @@ const bannerDetailPage = async () => {
                     
                     <div class="category">
                         ${result.movie.category.map(cate => {
-        return `${cate.name}`
-    }).join(", ")}
+                return `${cate.name}`
+            }).join(", ")}
                         </div>
                     <p class="overview">
                         ${result.movie.content}
@@ -65,16 +79,16 @@ const bannerDetailPage = async () => {
                             <p class="list-name">Actors</p>
                             <p>
                             ${result.movie.actor.map(actor => {
-        return `${actor}`
-    }).join(", ")}
+                return `${actor}`
+            }).join(", ")}
                             </p>
                         </div>
                         <div class="list-item">
                             <p class="list-name">Directors</p>
                             <p>
                             ${result.movie.director.map(d => {
-        return `${d}`
-    }).join(", ")}
+                return `${d}`
+            }).join(", ")}
                             </p>
                         </div>
                     </div>
@@ -102,8 +116,9 @@ const bannerDetailPage = async () => {
 
 
     container.innerHTML += movieDetail
-    handleToWatchMoviePage()
-
+    await handleToWatchMoviePage()
+    await handleSaveMovie(email, password)
+    await handleUnSaveMovie(email, password)
 }
 
 export default bannerDetailPage

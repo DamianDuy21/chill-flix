@@ -13,7 +13,8 @@ const handleSubmit = async (e) => {
     let password = (e.target.elements.password.value)
     if (!email || !password) {
         alert("Vui lòng nhập đầy đủ thông tin!")
-    } else {
+    }
+    else {
         let signInBtn = e.target.querySelector("[authen-btn]");
         signInBtn.classList.add("loading");
         try {
