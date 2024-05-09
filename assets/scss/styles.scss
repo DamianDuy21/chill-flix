@@ -712,9 +712,7 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1000;
-    background-color: var(--surface);
-    // background-color: red;
+    z-index: 990;
     display: none;
     // pointer-events: none;
 
@@ -1218,6 +1216,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
 
     .authen-form {
         position: relative;
