@@ -15,7 +15,7 @@ const handleSubmit = async (e) => {
         alert("Vui lòng nhập đầy đủ thông tin!")
     }
     else if (email.indexOf('#') !== -1) {
-        alert("Email không được chứa dấu '#'")
+        alert("Email không được chứa kí tự '#'")
     }
 
     else {
