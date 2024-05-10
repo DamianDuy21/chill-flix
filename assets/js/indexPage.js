@@ -9,7 +9,7 @@ import { handleUnAuthened } from "./global.js";
 
 
 const indexPageRender = async () => {
-    await handleUnAuthened()
+    // await handleUnAuthened()
     await headerBox()
     await sidebar()
     await handleResize()

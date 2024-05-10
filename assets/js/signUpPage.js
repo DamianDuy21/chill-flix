@@ -1,3 +1,4 @@
+import { setCookie } from "../helper/cookies.js";
 import { addUser, authenUser } from "./api.js";
 
 const handleToSignInPage = (e) => {
@@ -31,6 +32,7 @@ const handleSubmit = async (e) => {
                 alert("Đã có lỗi xảy ra...")
             }
             else {
+                await setCookie("email", email, 1);
                 alert("Tài khoản được đăng kí thành công!")
                 window.location.href = "index.html"
             }

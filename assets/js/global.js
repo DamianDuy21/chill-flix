@@ -65,10 +65,12 @@ const handleUnAuthened = async () => {
     let password = getCookie("password")
     const user = await authenUser(email, password);
     if (user.data.length == 0) {
-        window.location.href = "signIn.html";
+        window.location.href = "index.html";
     } else {
     }
 }
+//cho nay la tai vi dinh bat phai dang nhap moi duoc vao index nhung sau do thi khong can
+//nen no hoi do hoi ti
 const handleAuthened = async () => {
     let email = getCookie("email")
     let password = getCookie("password")
@@ -132,10 +134,12 @@ const handleUnSaveMovie = async (email, password) => {
     })
 }
 const handleMovieInSaveList = async (email, password, slug) => {
+    if (email && password && slug) {
+        let respone = await authenUser(email, password)
+        let user = await respone.data[0]
+        return user.movie.watchLater.includes(slug)
+    }
 
-    let respone = await authenUser(email, password)
-    let user = respone.data[0]
-    return user.movie.watchLater.includes(slug)
 }
 
 

@@ -206,7 +206,7 @@ body {
     scale: 1;
   }
   50% {
-    scale: 1.1;
+    scale: 1.2;
   }
   100% {
     scale: 1;
@@ -471,9 +471,13 @@ body {
   position: relative;
   transition: var(--transition-short);
 }
-.header .user-btn:hover img,
-.header .user-btn :focus-visible img {
+.header .user-btn:hover img.rotate-able-icon,
+.header .user-btn :focus-visible img.rotate-able-icon {
   animation: loading 500ms linear;
+}
+.header .user-btn:hover img.grow-able-icon,
+.header .user-btn :focus-visible img.grow-able-icon {
+  animation: growBigSmall 350ms linear;
 }
 .header .user-btn.active .user-options {
   display: flex;
@@ -492,6 +496,7 @@ body {
   display: none;
   animation: slideTopDown 200ms linear;
   transition: var(--transition-short);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .header .user-btn .user-options .user-option {
   width: 100%;
@@ -1199,16 +1204,41 @@ body {
   .header .menu-btn {
     display: none;
   }
+  .header .un-authen {
+    min-width: 36px !important;
+  }
+  .header .un-authen .user-name img {
+    position: relative;
+    top: 3px !important;
+    left: 16px !important;
+    display: block;
+  }
+  .header .un-authen .user-name:hover span,
+  .header .un-authen .user-name :focus-visible span {
+    animation: growBigSmall 350ms linear;
+  }
+  .header .un-authen .user-options {
+    top: calc(100% + 24px);
+    right: -12px;
+  }
   .header .user-btn {
-    min-width: 60px;
+    min-width: 72px;
     margin-left: 4px;
   }
   .header .user-btn .user-name {
     display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .header .user-btn .user-name img {
+    position: relative;
+    top: 4px;
+    left: 40px;
+    display: block;
   }
   .header .user-btn .user-name:hover span,
   .header .user-btn .user-name :focus-visible span {
-    animation: growBigSmall 300ms linear;
+    animation: growBigSmall 350ms linear;
   }
   .header .user-btn .user-options {
     top: calc(100% + 24px);

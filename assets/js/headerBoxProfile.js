@@ -11,7 +11,7 @@ const headerBoxProfile = async () => {
 
     const handleSignOut = async () => {
         await deleteAllCookies()
-        window.location.href = "signIn.html"
+        window.location.href = "index.html"
     }
 
     const searchWrapper = `
@@ -24,7 +24,7 @@ const headerBoxProfile = async () => {
     <div class="user-name">
         <span>${userName}</span>
     </div>
-    <img src="./assets/images/setting-icon.png" width="24" height="24" alt="user-btn">
+    <img src="./assets/images/setting-icon.png" width="24" height="24" alt="user-btn" class="rotate-able-icon">
     <div class="user-options">
         <div class="user-option" index-page-btn>Trang chủ</div>
         <div class="user-option" profile-page-btn>Hồ sơ</div>

@@ -252,7 +252,7 @@ body {
     }
 
     50% {
-        scale: 1.1;
+        scale: 1.2;
     }
 
     100% {
@@ -563,7 +563,14 @@ body {
         &:hover,
         :focus-visible {
             img {
-                animation: loading 500ms linear;
+                &.rotate-able-icon {
+                    animation: loading 500ms linear;
+                }
+
+                &.grow-able-icon {
+                    animation: growBigSmall 350ms linear;
+                }
+
             }
 
         }
@@ -588,6 +595,7 @@ body {
             display: none;
             animation: slideTopDown 200ms linear;
             transition: var(--transition-short);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
             .user-option {
                 width: 100%;
@@ -610,6 +618,7 @@ body {
             right: 0;
             display: none;
             font-size: 18px;
+            // min-width: 100px;
         }
 
         img {
@@ -1530,17 +1539,53 @@ body {
 
         }
 
-        .user-btn {
-            min-width: 60px;
-            margin-left: 4px;
+
+        .un-authen {
+            min-width: 36px !important;
 
             .user-name {
-                display: block;
+
+                img {
+                    position: relative;
+                    top: 3px !important;
+                    left: 16px !important;
+                    display: block;
+                }
 
                 &:hover,
                 :focus-visible {
                     span {
-                        animation: growBigSmall 300ms linear;
+                        animation: growBigSmall 350ms linear;
+                    }
+                }
+            }
+
+            .user-options {
+                top: calc(100% + 24px);
+                right: -12px;
+            }
+        }
+
+        .user-btn {
+            min-width: 72px;
+            margin-left: 4px;
+
+            .user-name {
+                display: block;
+                width: 100%;
+                text-align: center;
+
+                img {
+                    position: relative;
+                    top: 4px;
+                    left: 40px;
+                    display: block;
+                }
+
+                &:hover,
+                :focus-visible {
+                    span {
+                        animation: growBigSmall 350ms linear;
                     }
                 }
             }
@@ -1554,6 +1599,7 @@ body {
                 display: none;
             }
         }
+
     }
 
     .sidebar {

@@ -30,7 +30,7 @@ const headerBox = async () => {
 
     const handleSignOut = async () => {
         await deleteAllCookies()
-        window.location.href = "signIn.html"
+        window.location.href = "index.html"
     }
 
     const searchWrapper = `
@@ -38,7 +38,7 @@ const headerBox = async () => {
     <!-- <img src="./assets/images/logo.svg" width="140" height="32" alt="Logo"> -->
     <div style="font-size: 32px; font-weight: 600">Logo</div>
 </a>
-<div class="search-box" search-box>
+<div class="${getCookie("email") ? ("search-box") : ("search-box un-authen")}" search-box>
     <form class="search-wrapper" onsubmit="return false;">
         <input type="text" name="search" placeholder="Tìm kiếm phim..." class="search-field" search-field
             autocomplete="off">
@@ -60,18 +60,31 @@ const headerBox = async () => {
     <img src="./assets/images/menu-close.png" width="24" height="24" alt="close menu" class="close">
 </button>
 
-<button class="user-btn" user-btn>
+${getCookie("email") ? (`<button class="user-btn" user-btn>
     <div class="user-name">
         <span>${userName}</span>
     </div>
-    <img src="./assets/images/setting-icon.png" width="24" height="24" alt="user-btn">
+    <img src="./assets/images/setting-icon.png" width="24" height="24" alt="user-btn" class="rotate-able-icon">
     <div class="user-options">
         <div class="user-option" index-page-btn>Trang chủ</div>
         <div class="user-option" profile-page-btn>Hồ sơ</div>
         <div class="user-option" saved-movie-page-btn>Phim đã lưu</div>
         <div class="user-option" sign-out-btn>Đăng xuất</div>
     </div>
-</button>
+    </button>
+        `) : (`
+        <button class="user-btn un-authen" user-btn>
+        <div class="user-name">
+            <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class="grow-able-icon">
+        </div>
+        <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class="grow-able-icon">
+        <div class="user-options">
+            <div class="user-option" sign-up-page-btn>Đăng kí</div>
+            <div class="user-option" sign-in-page-btn>Đăng nhập</div>
+        </div>
+        </button>
+
+        `)}
 
 
 `
@@ -82,23 +95,50 @@ const headerBox = async () => {
     const form = document.querySelector(".search-wrapper");
     form.addEventListener("submit", handleSubmit);
     const signOutBtn = document.querySelector("[sign-out-btn]");
-    signOutBtn.addEventListener("click", handleSignOut);
+    if (signOutBtn) {
+        signOutBtn.addEventListener("click", handleSignOut);
+    }
+
 
     const indexPageBtn = document.querySelector("[index-page-btn]");
-    indexPageBtn.addEventListener("click", () => {
-        window.location.href = "index.html"
-    });
+    if (indexPageBtn) {
+        indexPageBtn.addEventListener("click", () => {
+            window.location.href = "index.html"
+        });
+    }
+
     const profilePageBtn = document.querySelector("[profile-page-btn]");
-    profilePageBtn.addEventListener("click", () => {
-        window.location.href = "profile.html"
-    });
+    if (profilePageBtn) {
+        profilePageBtn.addEventListener("click", () => {
+            window.location.href = "profile.html"
+        });
+    }
+
+
     const savedMoviePageBtn = document.querySelector("[saved-movie-page-btn]");
-    savedMoviePageBtn.addEventListener("click", () => {
-        window.location.href = "savedMovie.html"
-    });
+    if (savedMoviePageBtn) {
+        savedMoviePageBtn.addEventListener("click", () => {
+            window.location.href = "savedMovie.html"
+        });
+    }
 
     const userBtn = document.querySelector("[user-btn]");
-    userBtn.addEventListener("click", handleDisplayOptions);
+    if (userBtn) {
+        userBtn.addEventListener("click", handleDisplayOptions);
+    }
+    const signInPageBtn = document.querySelector("[sign-in-page-btn]");
+    if (signInPageBtn) {
+        signInPageBtn.addEventListener("click", () => {
+            window.location.href = "signIn.html"
+        });
+    }
+    const signUpPageBtn = document.querySelector("[sign-up-page-btn]");
+    if (signUpPageBtn) {
+        signUpPageBtn.addEventListener("click", () => {
+            window.location.href = "signUp.html"
+        });
+    }
+
 
 
 }
