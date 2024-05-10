@@ -14,6 +14,10 @@ const handleSubmit = async (e) => {
     if (!email || !password || !username) {
         alert("Vui lòng nhập đầy đủ thông tin!")
     }
+    else if (email.indexOf('#') !== -1) {
+        alert("Email không chứa dấu '#'")
+    }
+
     else {
         let signInBtn = e.target.querySelector("[authen-btn]");
         signInBtn.classList.add("loading");
@@ -54,7 +58,7 @@ const signUpPage = () => {
             <div class="authen-inputs">
                 <div class="input-wrapper">
                     <label for="">Email</label>
-                    <input name="email" type="text" placeholder="Email..." class="input-field">
+                    <input name="email" type="email" placeholder="Email..." class="input-field">
                 </div>
                 <div class="input-wrapper">
                     <label for="">Tên người dùng</label>
