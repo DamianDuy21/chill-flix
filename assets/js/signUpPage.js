@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
             else {
                 await setCookie("email", email, 1);
                 alert("Tài khoản được đăng kí thành công!")
-                window.location.href = "index.html"
+                window.location.href = "signIn.html"
             }
         }
         signInBtn.classList.remove("loading");

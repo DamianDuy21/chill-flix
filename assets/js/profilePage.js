@@ -52,7 +52,29 @@ const profileContent = async () => {
 
     const container = await document.querySelector("[page-content]");
     container.innerHTML = `
-    <div class="authen-container">
+    `;
+
+    // const form = document.querySelector('.authen-form');
+    // form.addEventListener('submit', handleSubmit);
+};
+
+const profilePageRender = async () => {
+
+    await handleUnAuthened()
+    const loadingTheme = document.querySelector("[loading-theme]")
+    if (loadingTheme) {
+        loadingTheme.classList.add("active")
+    }
+    await headerBoxProfile()
+
+    await profileContent()
+    loadingTheme.classList.remove("active")
+
+}
+profilePageRender()
+
+
+{/* <div class="authen-container">
         <form class="authen-form" autocomplete=off>
             <div class="title">
                 <h3 class="title-large">Hồ sơ</h3>
@@ -79,19 +101,4 @@ const profileContent = async () => {
                 </button>
             </div>
         </form>
-    </div>
-    `;
-
-    const form = document.querySelector('.authen-form');
-    form.addEventListener('submit', handleSubmit);
-};
-
-const profilePageRender = async () => {
-
-    await handleUnAuthened()
-    await headerBoxProfile()
-
-    await profileContent()
-
-}
-profilePageRender()
+    </div> */}

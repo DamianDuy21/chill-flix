@@ -766,8 +766,8 @@ body {
     background-color: var(--surface);
     color: var(--on-surface);
     padding: 24px 16px 0px;
-    min-height: calc(100vh - 96px);
-    height: calc(100% - 96px);
+    min-height: calc(100vh - 96px - 63px);
+    height: calc(100% - 96px - 63px);
     // overflow-y: auto;
     z-index: 1;
 
@@ -1605,12 +1605,14 @@ body {
                 display: block;
                 width: 100%;
                 text-align: center;
-                text-overflow: ellipsis;
                 margin-left: 36px;
 
                 span {
                     position: relative;
                     top: 4px;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 &:hover,
