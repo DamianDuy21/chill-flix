@@ -464,7 +464,6 @@ body {
 
         .search-wrapper {
             position: relative;
-            // display: flex;
             flex-grow: 1;
 
             .search-field {
@@ -624,7 +623,7 @@ body {
 
     }
 
-    .un-authen {
+    .user-btn-un-authen {
         // background-color: red;
         width: 48px;
         height: 48px;
@@ -1396,16 +1395,9 @@ body {
     top: 96px;
     background-color: var(--surface);
     color: var(--on-surface);
-    padding: 24px 16px 16px 16px;
+    padding: 24px 16px 12px 16px;
     min-height: calc(100vh - 96px - 67px);
-    height: calc(100% - 96px);
     z-index: 1;
-}
-
-@media (max-width: 500px) {
-    .profile-container {
-        height: calc(100% - 96px - 67px);
-    }
 }
 
 .profile-wrapper {
@@ -1700,10 +1692,10 @@ body {
 
 
     //profile page
-    .profile-container {
-        min-height: calc(100vh - 96px - 67px);
-        height: calc(100% - 96px - 67px);
-    }
+    // .profile-container {
+    //     min-height: calc(100vh - 96px - 67px);
+    //     height: calc(100% - 96px - 67px);
+    // }
 
     .profile-wrapper {
         display: flex;
@@ -1754,15 +1746,6 @@ body {
             position: relative;
             left: -8px;
 
-            &.un-authen {
-                .search-wrapper {
-                    right: 0px;
-                }
-            }
-
-            .search-wrapper {
-                right: 8px;
-            }
         }
 
         .menu-btn {
@@ -1771,7 +1754,7 @@ body {
         }
 
 
-        .un-authen {
+        .user-btn-un-authen {
             width: 48px !important;
             height: 48px;
             padding: 0 !important;

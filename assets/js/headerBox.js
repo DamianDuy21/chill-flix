@@ -38,7 +38,7 @@ const headerBox = async () => {
     <!-- <img src="./assets/images/logo.svg" width="140" height="32" alt="Logo"> -->
     <div style="font-size: 32px; font-weight: 600">Logo</div>
 </a>
-<div class="${getCookie("email") ? ("search-box") : ("search-box un-authen")}" search-box>
+<div class="${getCookie("email") ? ("search-box") : ("search-box search-box-un-authen")}" search-box>
     <form class="search-wrapper" onsubmit="return false;">
         <input type="text" name="search" placeholder="Tìm kiếm phim..." class="search-field" search-field
             autocomplete="off">
@@ -73,7 +73,7 @@ ${getCookie("email") ? (`<button class="user-btn" user-btn>
     </div>
     </button>
         `) : (`
-        <button class="user-btn un-authen" user-btn>
+        <button class="user-btn user-btn-un-authen" user-btn>
         <div class="user-name">
             <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class=" sign-in-icon grow-able-icon">
         </div>
