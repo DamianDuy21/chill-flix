@@ -75,9 +75,9 @@ ${getCookie("email") ? (`<button class="user-btn" user-btn>
         `) : (`
         <button class="user-btn un-authen" user-btn>
         <div class="user-name">
-            <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class="grow-able-icon">
+            <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class=" sign-in-icon grow-able-icon">
         </div>
-        <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class="grow-able-icon">
+        <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class="sign-in-icon grow-able-icon">
         <div class="user-options">
             <div class="user-option" sign-up-page-btn>Đăng kí</div>
             <div class="user-option" sign-in-page-btn>Đăng nhập</div>

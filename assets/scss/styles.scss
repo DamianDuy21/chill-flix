@@ -621,10 +621,18 @@ body {
             // min-width: 100px;
         }
 
-        img {
-            // background-color: red;
-        }
 
+    }
+
+    .un-authen {
+        // background-color: red;
+        width: 48px;
+        height: 48px;
+
+        .sign-in-icon {
+            position: relative;
+            left: 2px;
+        }
     }
 }
 
@@ -1522,7 +1530,7 @@ body {
 
     //HEADER
     .header {
-        padding-inline: 36px;
+        padding-inline: 36px 24px;
 
         .search-btn {
             display: none;
@@ -1532,6 +1540,18 @@ body {
             all: unset;
             display: block;
             width: 360px;
+            position: relative;
+            left: -8px;
+
+            &.un-authen {
+                .search-wrapper {
+                    right: 0px;
+                }
+            }
+
+            .search-wrapper {
+                right: 8px;
+            }
         }
 
         .menu-btn {
@@ -1541,14 +1561,23 @@ body {
 
 
         .un-authen {
-            min-width: 36px !important;
+            width: 48px !important;
+            height: 48px;
+            padding: 0 !important;
+            margin-right: 0px !important;
 
             .user-name {
+                width: 100%;
+                height: 100%;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                position: relative;
+                right: 4px;
+                top: 1px;
+                margin-left: 0px !important;
 
                 img {
-                    position: relative;
-                    top: 3px !important;
-                    left: 16px !important;
                     display: block;
                 }
 
@@ -1561,25 +1590,27 @@ body {
             }
 
             .user-options {
-                top: calc(100% + 24px);
-                right: -12px;
+                top: calc(100% + 12px) !important;
+                right: 0px !important;
             }
         }
 
         .user-btn {
-            min-width: 72px;
-            margin-left: 4px;
+            min-width: 48px;
+            max-width: 72px;
+            padding: 16px 32px 16px 32px;
+            margin-right: 12px;
 
             .user-name {
                 display: block;
                 width: 100%;
                 text-align: center;
+                text-overflow: ellipsis;
+                margin-left: 36px;
 
-                img {
+                span {
                     position: relative;
                     top: 4px;
-                    left: 40px;
-                    display: block;
                 }
 
                 &:hover,
@@ -1591,7 +1622,7 @@ body {
             }
 
             .user-options {
-                top: calc(100% + 24px);
+                top: calc(100% + 20px);
                 right: -12px;
             }
 
