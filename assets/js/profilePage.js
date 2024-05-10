@@ -28,7 +28,7 @@ const handleSubmit = async (e) => {
                     await setCookie("email", email, 1);
                     await setCookie("password", password, 1);
                     alert("Cập nhật thông tin thành công!")
-                    window.location.href = "index.html"
+                    window.location.href = "profile.html"
                 } catch (editError) {
                     console.error("Error editing user:", editError);
                     alert("Có lỗi xảy ra khi cập nhật thông tin người dùng. Vui lòng thử lại sau.");
@@ -49,13 +49,64 @@ const profileContent = async () => {
     let email = getCookie("email")
     let password = getCookie("password")
     let user = await authenUser(email, password)
-
+    console.log(user)
     const container = await document.querySelector("[page-content]");
     container.innerHTML = `
+    <div class="profile-wrapper">
+            <div class="statistics-section">
+                <div class="statistics-wrapper">
+                    <div class="statistics-item">
+                        <div class="statistics-title">
+                            <h3 class="title">Đã xem</h3>
+                        </div>
+                        <div class="statistics-info">${user.data[0].movie.history.length} phim</div>
+                    </div>
+                    <div class="statistics-item">
+                        <div class="statistics-title">
+                            <h3 class="title">Đang lưu</h3>
+                        </div>
+                        <div class="statistics-info">${user.data[0].movie.watchLater.length} phim</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="profile-form">
+                <form class="authen-form" autocomplete=off>
+                    <div class="title">
+                        <h3 class="title-large">Hồ sơ</h3>
+                    </div>
+
+                    <div class="authen-inputs">
+                        <div class="input-wrapper">
+                            <label for="">Email</label>
+                            <input name="email" value="${user.data[0].email}" type="text" placeholder="Email..."
+                                class="input-field" disabled>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="">Tên người dùng</label>
+                            <input name="username" value="${user.data[0].username}" type="text"
+                                placeholder="Tên người dùng..." class="input-field">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="">Mật khẩu</label>
+                            <input name="password" value="${user.data[0].password}" type="text"
+                                placeholder="Mật khẩu..." class="input-field">
+                        </div>
+                    </div>
+
+                    <div class="authen-btns">
+                        <button class="authen-btn" type="submit" authen-btn>
+                            <span>Cập nhật</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     `;
 
-    // const form = document.querySelector('.authen-form');
-    // form.addEventListener('submit', handleSubmit);
+    const form = document.querySelector('.authen-form');
+    form.addEventListener('submit', handleSubmit);
 };
 
 const profilePageRender = async () => {
@@ -74,31 +125,3 @@ const profilePageRender = async () => {
 profilePageRender()
 
 
-{/* <div class="authen-container">
-        <form class="authen-form" autocomplete=off>
-            <div class="title">
-                <h3 class="title-large">Hồ sơ</h3>
-            </div>
-
-            <div class="authen-inputs">
-                <div class="input-wrapper">
-                    <label for="">Email</label>
-                    <input name="email" value="${user.data[0].email}" type="text" placeholder="Email..." class="input-field" disabled>
-                </div>
-                <div class="input-wrapper">
-                    <label for="">Tên người dùng</label>
-                    <input name="username" value="${user.data[0].username}" type="text" placeholder="Tên người dùng..." class="input-field">
-                </div>
-                <div class="input-wrapper">
-                    <label for="">Mật khẩu</label>
-                    <input name="password" value="${user.data[0].password}" type="text" placeholder="Mật khẩu..." class="input-field">
-                </div>
-            </div>
-
-            <div class="authen-btns">
-                <button class="authen-btn" type="submit" authen-btn>
-                    <span>Cập nhật</span>
-                </button>
-            </div>
-        </form>
-    </div> */}

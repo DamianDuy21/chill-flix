@@ -8,9 +8,9 @@ const handleToSignInPage = (e) => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    let email = (e.target.elements.email.value)
-    let password = (e.target.elements.password.value)
-    let username = (e.target.elements.username.value)
+    let email = (e.target.elements.email.value).trim().toLowerCase()
+    let password = (e.target.elements.password.value).trim()
+    let username = (e.target.elements.username.value).trim()
     if (!email || !password || !username) {
         alert("Vui lòng nhập đầy đủ thông tin!")
     }

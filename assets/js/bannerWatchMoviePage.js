@@ -1,5 +1,5 @@
 import { getCookie, setCookie } from "../helper/cookies.js"
-import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
+import fetchAPI, { API_DETAIL_MOVIE, authenUser, editUser } from "./api.js"
 
 {/* <iframe src=${result.episodes[0].server_data[0].link_embed} */ }
 // frameborder="0" class="video" allow="fullscreen"></iframe>
@@ -26,8 +26,6 @@ const bannerWatchMoviePage = async () => {
     const movieSlug = getCookie("movie-slug")
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
-    console.log(result)
-    console.log(api)
     let episode = ""
     if (getCookie("episode")) {
         episode = getCookie("episode")
@@ -52,7 +50,7 @@ const bannerWatchMoviePage = async () => {
                 ${result.episodes[0].server_data.map((item) => {
             if (item.name == getCookie("episode")) {
                 return `
-                    <iframe src= ${item.link_embed}
+                    <iframe 
                         frameborder="0" class="video" allow="fullscreen"></iframe>
                         `
             }
@@ -98,6 +96,24 @@ const bannerWatchMoviePage = async () => {
         `
     }
 
+    let user = await authenUser(getCookie("email"), getCookie("password"))
+    console.log(user)
+    let item = `${getCookie("movie-slug")}`
+    if (user.data[0].movie.history.includes(item)) {
+        let historyList = user.data[0].movie.history.filter(i => {
+            return i != item
+        })
+        user.data[0].movie.history = historyList
+        user.data[0].movie.history.unshift(item)
+    }
+    else {
+        user.data[0].movie.history.unshift(item)
+    }
+
+    await editUser({
+        _id: user.data[0]._id,
+        movie: user.data[0].movie
+    })
 
     container.innerHTML += video
     await handleEpisode()

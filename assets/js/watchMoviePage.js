@@ -25,7 +25,6 @@ const watchMoviePageRender = async () => {
     await bannerWatchMoviePage()
 
     const movieAlike = await handleCategoryAlikeMoviesList(getCookie("movie-alike"), getCookie("movie-slug"))
-    // const movieAlike = await localStorage.getItem("movie-alike")
     const api1 = await API_SEARCH_CATEGORY + movieAlike
     const data1 = await getMoviesByAPI(api1)
     await sliderList(data1, "Phim liên quan", "phim-lien-quan")

@@ -24,14 +24,13 @@ const handleToDetailPage = async () => {
     })
 }
 const handleToWatchMoviePage = () => {
-    document.addEventListener("click", (event) => {
-        const item = event.target.closest("[watch-now-btn]")
+    document.addEventListener("click", async (event) => {
+        const item = await event.target.closest("[watch-now-btn]")
         if (item) {
-            setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
-            setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
-            setCookie("movie-name", item.getAttribute("movie-name"), 1)
-            setCookie("episode", '')
-            // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
+            await setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
+            await setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
+            await setCookie("movie-name", item.getAttribute("movie-name"), 1)
+            await setCookie("episode", '')
         }
 
     })
