@@ -77,9 +77,16 @@ const savedMovieRender = async () => {
 
     const sidebarSearchList = `
     <section class="searchSidebar-list" searchSidebar-list>
+        
+        ${user.data[0].movie.watchLater.length > 0 ? (`
         <div class="title-wrapper">
             <h3 class="title-large">Danh sách phim đã lưu</h3>
         </div>
+        `) : (`
+        <div class="title-wrapper">
+        <h3 class="title-large">Chưa có phim nào được lưu</h3>
+    </div>
+        `)}
         <div class="grid-list" sidebar-grid-list>
 
         </div>
