@@ -63,7 +63,7 @@ const signInPage = async () => {
                 <div class="authen-inputs">
                     <div class="input-wrapper">
                         <label for="">Email</label>
-                        <input value="${getCookie("email") ? (getCookie("email")) : ("")}" name="email" type="email" placeholder="Email..." class="input-field">
+                        <input value="${getCookie("email") ? (getCookie("email")) : ("")}" name="email" type="text" placeholder="Email..." class="input-field">
                     </div>
                     <div class="input-wrapper">
                         <label for="">Mật khẩu</label>

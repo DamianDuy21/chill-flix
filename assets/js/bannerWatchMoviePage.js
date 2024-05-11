@@ -50,7 +50,7 @@ const bannerWatchMoviePage = async () => {
                 ${result.episodes[0].server_data.map((item) => {
             if (item.name == getCookie("episode")) {
                 return `
-                    <iframe 
+                    <iframe src= ${item.link_embed}
                         frameborder="0" class="video" allow="fullscreen"></iframe>
                         `
             }
