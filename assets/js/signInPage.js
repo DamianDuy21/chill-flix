@@ -87,7 +87,6 @@ const signInPage = async () => {
         `;
     const form = document.querySelector('[authen-form]');
     form.addEventListener('submit', handleSubmit);
-    console.log(1)
 
     const toSignUpBtn = document.querySelector("[to-sign-up-btn]")
     toSignUpBtn.addEventListener("click", handleToSignUpPage)
