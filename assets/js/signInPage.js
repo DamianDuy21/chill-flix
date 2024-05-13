@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
 
 
 const signInPage = async () => {
-    await handleAuthened()
+    // await handleAuthened()
 
     const body = document.querySelector("body");
     body.innerHTML = `

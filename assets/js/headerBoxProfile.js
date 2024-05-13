@@ -1,4 +1,4 @@
-import { deleteAllCookies, getCookie, setCookie } from "../helper/cookies.js";
+import { deleteAllCookies, deleteCookie, getCookie, setCookie } from "../helper/cookies.js";
 import { addEventOnElements } from "./global.js";
 
 const headerBoxProfile = async () => {
