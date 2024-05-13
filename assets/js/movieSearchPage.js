@@ -1,5 +1,4 @@
 
-import { getCookie } from "../helper/cookies.js";
 import { handleResize } from "./handleResize.js";
 import headerBox from "./headerBox.js";
 import movieSearchHeaderBoxRender from "./movieSearchHeaderBoxRender.js";
@@ -10,23 +9,20 @@ import { sidebar } from "./sidebar.js";
 
 
 const movieSearchPagePageRender = async () => {
-    const searchType = getCookie("search-type")
-    if (!searchType) {
-        window.location.href = "index.html";
-    }
+    const segments = window.location.href.split("?")
+    const searchType = segments[segments.length - 1].split("&")[0]
     await headerBox()
     await sidebar()
     await handleResize()
 
 
-    // const searchType = localStorage.getItem("search-type")
-    if (searchType == "header-box") {
+    if (searchType == "1") {
         await movieSearchHeaderBoxRender()
     }
-    if (searchType == "sidebar") {
+    if (searchType == "2") {
         await movieSearchSidebarRender()
     }
-    if (searchType == "show-more-btn") {
+    if (searchType == "3") {
         await movieSearchShowMoreBtnSliderListRender()
     }
 

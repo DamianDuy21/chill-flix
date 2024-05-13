@@ -1,19 +1,18 @@
 import { getCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE, API_NEW_MOVIE, API_SEARCH_MOVIE } from "./api.js"
-import { handleToDetailPage } from "./global.js"
+
 
 let limit = 10
 let page = 1
 const movieSearchHeaderBoxRender = async () => {
-
+    const segments = window.location.href.split("?")
+    const searchSlug = (segments[segments.length - 1].split("&")[1] == '') ? ("all-movie") : (segments[segments.length - 1].split("&")[1])
     const fetchMovie = async () => {
         const loadMoreBtn = document.querySelector("[header-box-load-more-btn]");
         if (loadMoreBtn) {
             loadMoreBtn.classList.add("loading")
         }
 
-        //handle search value is empty
-        const searchSlug = getCookie("search-slug") == '' ? ("all-movie") : (getCookie("search-slug"))
         let api = ''
         let result = []
         let respone = {}
@@ -40,7 +39,7 @@ const movieSearchHeaderBoxRender = async () => {
                         <div class="meta-list">
                             <div class="card-badge">${data.movie.year}</div>
                         </div>
-                        <a href="./detail.html" class="card-btn" 
+                        <a href="./detail.html?${data.movie.slug}" class="card-btn" 
                         title=${data.movie.name}
                         movie-slug=${data.movie.slug}
                         movie-alike=${data.movie.category[0].slug}
@@ -52,7 +51,7 @@ const movieSearchHeaderBoxRender = async () => {
 
         }
         else {
-            api = API_SEARCH_MOVIE + `?keyword=${getCookie("search-slug")}` + `&limit=${limit}`
+            api = API_SEARCH_MOVIE + `?keyword=${searchSlug}` + `&limit=${limit}`
             respone = await fetchAPI(api)
             if (respone.data.params.pagination.totalItems == 0) {
                 const searchNotFound = document.querySelector("[search-not-found]")
@@ -74,7 +73,7 @@ const movieSearchHeaderBoxRender = async () => {
                         <div class="meta-list">
                             <div class="card-badge">${data.movie.year}</div>
                         </div>
-                        <a href="./detail.html" class="card-btn" 
+                        <a href="./detail.html?${data.movie.slug}" class="card-btn" 
                         title=${data.movie.name}
                         movie-slug=${data.movie.slug}
                         movie-alike=${data.movie.category[0].slug}
@@ -120,7 +119,7 @@ const movieSearchHeaderBoxRender = async () => {
 
     const container = document.querySelector("[page-content]")
 
-    const searchName = getCookie("search-name") == '' ? ("Tất cả phim") : (getCookie("search-name"))
+    const searchName = searchSlug == 'all-movie' ? ("Tất cả phim") : (searchSlug)
     const headerBoxSearchList = `
     <section class="searchHeaderBox-list" searchHeaderBox-list>
     <p class="label">Kết quả tìm kiếm</p>
@@ -142,10 +141,9 @@ const movieSearchHeaderBoxRender = async () => {
 
     container.innerHTML += headerBoxSearchList
     await fetchMovie()
-    await handleToDetailPage()
     const loadMoreBtn = document.querySelector("[header-box-load-more-btn]");
     if (loadMoreBtn) {
-        if (getCookie("search-slug") != '') {
+        if (searchSlug != '') {
             loadMoreBtn.addEventListener("click", handleLoadMoreLimit);
         }
         else {

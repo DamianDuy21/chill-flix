@@ -5,7 +5,6 @@ import { sidebar } from "./sidebar.js";
 import headerBox from "./headerBox.js";
 import { getMoviesByAPI } from "./getDataAPI.js";
 import { handleResize } from "./handleResize.js";
-import { handleUnAuthened } from "./global.js";
 
 
 const indexPageRender = async () => {
@@ -22,11 +21,11 @@ const indexPageRender = async () => {
 
     //phim le
     const data1 = await getMoviesByAPI(API_FEATUREFILM)
-    await sliderList(data1, "Phim lẻ", "phim-le")
+    await sliderList(data1, "Phim lẻ", "phim-le", "phim-le")
 
     //phim bo
     const data2 = await getMoviesByAPI(API_TELEVISIONSERIES)
-    await sliderList(data2, "Phim bộ", "phim-bo")
+    await sliderList(data2, "Phim bộ", "phim-bo", "phim-bo")
 
     loadingTheme.classList.remove("active")
 }

@@ -30,6 +30,7 @@ const handleSubmit = async (e) => {
                     await setCookie("email", user.data[0].email, 1);
                     await setCookie("password", user.data[0].password, 1);
                     window.location.href = "index.html";
+                    // window.location.reload()
                 } catch (editError) {
                     console.error("Error editing user:", editError);
                     alert("Có lỗi xảy ra khi cập nhật thông tin người dùng. Vui lòng thử lại sau.");

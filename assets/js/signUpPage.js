@@ -23,6 +23,7 @@ const handleSubmit = async (e) => {
         signInBtn.classList.add("loading");
         const user = await authenUser(email, password);
         if (user.data.length > 0) {
+
             alert("Email này đã được đăng kí!")
         } else {
             let user = {

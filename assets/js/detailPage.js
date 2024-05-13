@@ -10,8 +10,8 @@ import sliderList from "./sliderList.js";
 
 
 const detailPageRender = async () => {
-
-    const movieSlug = getCookie("movie-slug")
+    const segments = window.location.href.split("?")
+    const movieSlug = segments[segments.length - 1].split("&")[0]
     if (!movieSlug) {
         window.location.href = "index.html";
     }
@@ -25,11 +25,10 @@ const detailPageRender = async () => {
     }
     await bannerDetailPage()
 
-    const movieAlike = await handleCategoryAlikeMoviesList(getCookie("movie-alike"), getCookie("movie-slug"))
-    // const movieAlike = await localStorage.getItem("movie-alike")
+    const movieAlike = await handleCategoryAlikeMoviesList(movieSlug)
     const api1 = await API_SEARCH_CATEGORY + movieAlike
-    const data1 = await getMoviesByAPI(api1)
-    await sliderList(data1, "Phim liên quan", "phim-lien-quan")
+    const data1 = await getMoviesByAPI(api1, movieSlug)
+    await sliderList(data1, "Phim liên quan", "phim-lien-quan", movieSlug)
 
     loadingTheme.classList.remove("active")
 

@@ -10,8 +10,11 @@ const headerBoxProfile = async () => {
     }
 
     const handleSignOut = async () => {
-        await deleteAllCookies()
-        window.location.href = "index.html"
+        await deleteCookie("email")
+        await deleteCookie("password")
+        await deleteCookie("user-name")
+        // window.location.href = "index.html"
+        window.location.reload()
     }
 
     const searchWrapper = `

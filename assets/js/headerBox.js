@@ -1,4 +1,4 @@
-import { deleteAllCookies, getCookie, setCookie } from "../helper/cookies.js";
+import { deleteAllCookies, deleteCookie, getCookie, setCookie } from "../helper/cookies.js";
 import { addEventOnElements } from "./global.js";
 
 const headerBox = async () => {
@@ -15,13 +15,7 @@ const headerBox = async () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const searchKey = (e.target[0].value)
-        setCookie("search-slug", searchKey, 1)
-        setCookie("search-name", searchKey, 1)
-        setCookie("search-type", "header-box", 1)
-        // localStorage.setItem("search-slug", searchKey)
-        // localStorage.setItem("search-name", searchKey)
-        // localStorage.setItem("search-type", "header-box")
-        window.location.href = './movieSearch.html';
+        window.location.href = `./movieSearch.html?1&${searchKey}`;
     }
 
     const handleDisplayOptions = async () => {
@@ -29,8 +23,11 @@ const headerBox = async () => {
     }
 
     const handleSignOut = async () => {
-        await deleteAllCookies()
-        window.location.href = "index.html"
+        await deleteCookie("email")
+        await deleteCookie("password")
+        await deleteCookie("user-name")
+        // window.location.href = "index.html"
+        window.location.reload()
     }
 
     const searchWrapper = `

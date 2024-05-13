@@ -1,25 +1,15 @@
 
 import { setCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM } from "./api.js";
-import { handleToDetailPage } from "./global.js";
 
-const sliderList = async (data, title, slug) => {
+
+const sliderList = async (data, title, slug, movieSlug) => {
     const container = document.querySelector("[page-content]");
-
-    const handleShowMoreBtn = () => {
-        setCookie("search-slug", slug, 1)
-        setCookie("search-type", "show-more-btn", 1)
-        setCookie("search-name", title, 1)
-        // localStorage.setItem("search-slug", slug);
-        // localStorage.setItem("search-type", "show-more-btn");
-        // localStorage.setItem("search-name", title);
-    };
-
     const movieList = `
         <section class="movie-list">
             <div class="title-wrapper">
                 <h3 class="title-large">${title}</h3>
-                <a href="./movieSearch.html" class="showmore-btn" show-more-btn=${slug}>
+                <a href="./movieSearch.html?3&${slug}&${movieSlug}" class="showmore-btn" show-more-btn=${slug}>
                     <span>Xem thêm</span>
                 </a>
             </div>
@@ -35,7 +25,7 @@ const sliderList = async (data, title, slug) => {
                                 <div class="meta-list">
                                     <div class="card-badge">${item.movie.year}</div>
                                 </div>
-                                <a href="./detail.html" class="card-btn" 
+                                <a href="./detail.html?${item.movie.slug}" class="card-btn" 
                                     title=${item.movie.name}
                                     movie-slug=${item.movie.slug}
                                     movie-alike=${item.movie.category[0].slug}
@@ -50,18 +40,6 @@ const sliderList = async (data, title, slug) => {
     `;
 
     container.innerHTML += movieList;
-    await handleToDetailPage();
-
-    // showMoreBtn.addEventListener("click", handleShowMoreBtn);
-    container.addEventListener("click", (event) => {
-        const target = event.target.closest("[show-more-btn]");
-        if (target) {
-            const clickedSlug = target.getAttribute("show-more-btn");
-            if (clickedSlug === slug) {
-                handleShowMoreBtn();
-            }
-        }
-    });
 };
 
 export default sliderList;

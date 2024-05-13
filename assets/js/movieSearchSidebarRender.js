@@ -1,22 +1,21 @@
 import { getCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_CATEGORY } from "./api.js";
-import { handleToDetailPage } from "./global.js";
 
 let page = 1;
 let click = 1;
 let maxClick = 0
 const movieSearchSidebarRender = async () => {
-
+    const segments = window.location.href.split("?")
+    const searchSlug = segments[segments.length - 1].split("&")[1]
     const fetchMovie = async () => {
         const loadMoreBtn = document.querySelector("[sidebar-load-more-btn]");
 
         if (loadMoreBtn) {
             loadMoreBtn.classList.add("loading")
         }
-        const api = API_SEARCH_CATEGORY + getCookie("search-slug") + `?page=${page}`;
-        // const api = API_SEARCH_CATEGORY + localStorage.getItem("search-slug") + `?page=${page}`;
+
+        const api = API_SEARCH_CATEGORY + searchSlug + `?page=${page}`;
         const respone = await fetchAPI(api);
-        console.log(respone.data.params.pagination.totalPages)
         maxClick = respone.data.params.pagination.totalPages
         if (loadMoreBtn) {
             if (click >= maxClick - 1) {
@@ -38,7 +37,7 @@ const movieSearchSidebarRender = async () => {
                     <div class="meta-list">
                         <div class="card-badge">${data.movie.year}</div>
                     </div>
-                    <a href="./detail.html" class="card-btn" 
+                    <a href="./detail.html?${data.movie.slug}" class="card-btn" 
                     title=${data.movie.name}
                     movie-slug=${data.movie.slug}
                     movie-alike=${data.movie.category[0].slug}
@@ -67,7 +66,7 @@ const movieSearchSidebarRender = async () => {
     <section class="searchSidebar-list" searchSidebar-list>
         <p class="label">Kết quả tìm kiếm</p>
         <div class="title-wrapper">
-            <h3 class="title-large">${getCookie("search-name")}</h3>
+            <h3 class="title-large">${searchSlug}</h3>
         </div>
         <div class="grid-list" sidebar-grid-list>
 
@@ -80,7 +79,6 @@ const movieSearchSidebarRender = async () => {
 
     container.innerHTML += sidebarSearchList;
     await fetchMovie(); // Fetch initial data
-    await handleToDetailPage();
 
     const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
     if (loadMoreBtn) {

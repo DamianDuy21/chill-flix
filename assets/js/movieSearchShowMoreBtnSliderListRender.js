@@ -1,12 +1,14 @@
 import { getCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE, API_FEATUREFILM, API_SEARCH_CATEGORY, API_TELEVISIONSERIES } from "./api.js"
-import { handleToDetailPage } from "./global.js"
+import { handleCategoryAlikeMoviesList } from "./global.js"
 let page = 1
 let limit = 10
 const movieSearchShowMoreBtnSliderListRender = async () => {
 
-    const classify = getCookie("search-slug")
-    // const classify = localStorage.getItem("search-slug")
+    const segments = window.location.href.split("?")
+    const classify = segments[segments.length - 1].split("&")[1]
+    const movieSlug = segments[segments.length - 1].split("&")[2]
+    const movieAlike = await handleCategoryAlikeMoviesList(movieSlug)
     const fetchMovie = async () => {
 
         const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
@@ -21,8 +23,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
             api = API_TELEVISIONSERIES
         }
         else if (classify == "phim-lien-quan") {
-            // api = API_SEARCH_CATEGORY + localStorage.getItem("movie-alike")
-            api = API_SEARCH_CATEGORY + getCookie("movie-alike")
+            api = API_SEARCH_CATEGORY + movieAlike
         }
         api = api + `?limit=${limit}` + `&page=${page}`
         const respone = await fetchAPI(api)
@@ -33,7 +34,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                 if (!data || !data.movie) {
                     return;
                 }
-                if (classify == "phim-lien-quan" && data.movie.slug == getCookie("movie-slug")) {
+                if (classify == "phim-lien-quan" && data.movie.slug == movieSlug) {
                     return;
                 }
                 return `
@@ -45,7 +46,7 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
                         <div class="meta-list">
                             <div class="card-badge">${data.movie.year}</div>
                         </div>
-                        <a href="./detail.html" class="card-btn" 
+                        <a href="./detail.html?${data.movie.slug}" class="card-btn" 
                         title=${data.movie.name}
                         movie-slug=${data.movie.slug}
                         movie-alike=${data.movie.category[0].slug}
@@ -73,14 +74,13 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
 
     const container = document.querySelector("[page-content]")
 
-    let movieName = classify == "phim-lien-quan" ? (`- ` + getCookie("movie-name")) : ('')
-    console.log(movieName)
+    let movieName = (classify == "phim-lien-quan") ? (`Phim liên quan: ${movieSlug}`) : (movieSlug)
 
     const showMoreBtnSearchList = `
     <section class="searchShowMoreBtn-list" searchShowMoreBtn-list>
         <p class="label">Kết quả tìm kiếm</p>
         <div class="title-wrapper">
-        <h3 class="title-large">${getCookie("search-name")} ${movieName}</h3>
+        <h3 class="title-large"> ${movieName}</h3>
 
         </div>
         <div class="grid-list" showMoreBtn-grid-list>
@@ -94,7 +94,6 @@ const movieSearchShowMoreBtnSliderListRender = async () => {
     `
     container.innerHTML += showMoreBtnSearchList
     await fetchMovie()
-    await handleToDetailPage()
     const loadMoreBtn = document.querySelector("[showMoreBtn-load-more-btn]");
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener("click", handleLoadMore);

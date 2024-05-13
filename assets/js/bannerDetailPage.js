@@ -1,28 +1,19 @@
 import { getCookie, setCookie } from "../helper/cookies.js"
 import fetchAPI, { API_DETAIL_MOVIE } from "./api.js"
-import { handleToWatchMoviePage, handleSaveMovie, handleMovieInSaveList, handleUnSaveMovie } from "./global.js";
+import { handleSaveMovie, handleMovieInSaveList, handleUnSaveMovie } from "./global.js";
 
 
 const bannerDetailPage = async () => {
     let email = getCookie("email")
     let password = getCookie("password")
-    // const movieSlug = localStorage.getItem("movie-slug")
-    const movieSlug = getCookie("movie-slug")
-    // if (!movieSlug) {
-    //     window.location.href = "index.html";
-    // }
+    const segments = window.location.href.split("?")
+    const movieSlug = segments[segments.length - 1]
     const alreadySaved = await handleMovieInSaveList(email, password, movieSlug)
     const api = API_DETAIL_MOVIE + movieSlug
     const result = await fetchAPI(api)
-    setCookie("movie-name", result.movie.name, 1)
-    // setCookie("movie-alike", result.movie.category[0].slug, 1)
-    // localStorage.setItem("movie-name", result.movie.name)
-    // localStorage.setItem("movie-alike", result.movie.category[0].slug)
     let trailer_url = result.movie.trailer_url.replace("/watch?v=", "/embed/")
-    setCookie("episode", "")
-    // localStorage.setItem("episode", "")
-    const container = document.querySelector("[page-content]")
 
+    const container = document.querySelector("[page-content]")
 
     //movie-detail
     const movieDetail = `
@@ -36,7 +27,7 @@ const bannerDetailPage = async () => {
                 <div class="detail-content">
                     <h1 class="heading">${result.movie.name}</h1>
                     <div style="display: flex; gap: 16px;">
-                    <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${result.movie.slug} movie-alike=${result.movie.category[0].slug} movie-name="${result.movie.name}">
+                    <a href="./watchMovie.html?${result.episodes[0].server_data.length > 1 ? (`${result.movie.slug}&tap-01`) : (`${result.movie.slug}&full`)}" class="btn" watch-now-btn movie-slug=${result.movie.slug} movie-alike=${result.movie.category[0].slug} movie-name="${result.movie.name}">
                         <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
                         <span class="span">Xem ngay</span>
                     </a>
@@ -116,7 +107,6 @@ const bannerDetailPage = async () => {
 
 
     container.innerHTML += movieDetail
-    await handleToWatchMoviePage()
     await handleSaveMovie(email, password)
     await handleUnSaveMovie(email, password)
 }

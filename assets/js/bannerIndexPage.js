@@ -1,5 +1,5 @@
 import fetchAPI, { API_DETAIL_MOVIE, API_NEW_MOVIE } from "./api.js"
-import { handleToDetailPage, handleToWatchMoviePage } from "./global.js";
+
 
 
 const bannerIndexPageControlHandler = () => {
@@ -45,6 +45,7 @@ const bannerIndexPage = async () => {
 
     // Wait for all asynchronous operations to complete
     const data = await Promise.all(dataPromises);
+    console.log(data)
     const container = document.querySelector("[page-content]")
 
     //banner
@@ -75,11 +76,11 @@ const bannerIndexPage = async () => {
                            ${item.movie.content}
                         </p>
                         <div style="display: flex; gap: 16px;">
-                        <a href="./watchMovie.html" class="btn" watch-now-btn movie-slug=${item.movie.slug} movie-alike=${item.movie.category[0].slug} movie-name="${item.movie.name}">
+                        <a href="./watchMovie.html?${item.episodes[0].server_data.length > 1 ? (`${item.movie.slug}&tap-01`) : (`${item.movie.slug}&full`)}" class="btn" watch-now-btn movie-slug=${item.movie.slug} movie-alike=${item.movie.category[0].slug} movie-name="${item.movie.name}">
                             <img src="./assets/images/play_circle.png" alt="" width="24" height="24">
                             <span class="span">Xem ngay</span>
                         </a>
-                        <a href="./detail.html" class="btn normal" movie-name="${item.movie.name}" movie-slug=${item.movie.slug} movie-alike=${item.movie.category[0].slug} todetail>
+                        <a href="./detail.html?${item.movie.slug}" class="btn normal" movie-name="${item.movie.name}" movie-slug=${item.movie.slug} movie-alike=${item.movie.category[0].slug} todetail>
                             <span class="span">Chi tiết</span>
                         </a>
                         </div>
@@ -110,9 +111,7 @@ const bannerIndexPage = async () => {
     `
 
     container.innerHTML += banner
-    await handleToDetailPage()
     await bannerIndexPageControlHandler()
-    await handleToWatchMoviePage()
 }
 
 export { bannerIndexPage, bannerIndexPageControlHandler }

@@ -11,52 +11,28 @@ const addEventOnElements = function (elements, eventType, callBack) {
     }
 }
 
-const handleToDetailPage = async () => {
-    document.addEventListener("click", (event) => {
-        const item = event.target.closest("[todetail]")
-        if (item) {
-            setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
-            setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
-            setCookie("movie-name", item.getAttribute("movie-name"), 1)
-            // localStorage.setItem("movie-slug", item.getAttribute("movie-slug"))
-        }
-
-    })
-}
-const handleToWatchMoviePage = () => {
-    document.addEventListener("click", async (event) => {
-        const item = await event.target.closest("[watch-now-btn]")
-        if (item) {
-            await setCookie("movie-slug", item.getAttribute("movie-slug"), 1)
-            await setCookie("movie-alike", item.getAttribute("movie-alike"), 1)
-            await setCookie("movie-name", item.getAttribute("movie-name"), 1)
-            await setCookie("episode", '')
-        }
-
-    })
-}
-const handleCategoryAlikeMoviesList = async (movieAlike, movieSlug) => {
+const handleCategoryAlikeMoviesList = async (movieSlug) => {
     const dataCategory = await fetchAPI(API_CATEGORY)
     const categoryList = dataCategory.map(item => {
         return item.slug
     })
-    if (!categoryList.includes(movieAlike)) {
-        const target = ''
-        const api = API_DETAIL_MOVIE + movieSlug;
-        const data = await fetchAPI(api);
+    const api = API_DETAIL_MOVIE + movieSlug
+    const data = await fetchAPI(api)
+    console.log(data)
+    let target = movieSlug
+    if (data.movie) {
         const movieCategory = data.movie.category.map(item => {
             return item.slug
         })
         for (let i = 0; i < movieCategory.length; i++) {
             if (categoryList.includes(movieCategory[i])) {
-                return movieCategory[i]
+                target = movieCategory[i]
+                break
             }
         }
-        return target
     }
-    else {
-        return movieAlike
-    }
+
+    return target
 }
 
 const handleUnAuthened = async () => {
@@ -144,8 +120,6 @@ const handleMovieInSaveList = async (email, password, slug) => {
 
 export {
     addEventOnElements,
-    handleToDetailPage,
-    handleToWatchMoviePage,
     timeOutCookie,
     handleCategoryAlikeMoviesList,
     handleAuthened,

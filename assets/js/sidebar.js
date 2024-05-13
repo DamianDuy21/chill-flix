@@ -10,26 +10,13 @@ const sidebar = async () => {
         genreList.push(item)
     })
 
-    const movieSearch = () => {
-        document.addEventListener("click", (event) => {
-            const cate = event.target.closest("[sidebar-link]")
-            if (cate) {
-                setCookie("search-name", cate.innerHTML, 1)
-                setCookie("search-slug", cate.getAttribute("search-slug"), 1)
-                // localStorage.setItem("search-name", cate.innerHTML)
-                // localStorage.setItem("search-slug", cate.getAttribute("search-slug"))
-            }
-
-        })
-
-    }
 
     const createList = (sidebarInner, data, listName) => {
         const list = `
             <div class="sidebar-list">
             <p class="title">${listName}</p>
             ${data.map(item => {
-            return `<a class="sidebar-link" href="./movieSearch.html" sidebar-link menu-close search-slug=${item.slug}>${item.name}</a>`
+            return `<a class="sidebar-link" href="./movieSearch.html?2&${item.slug}" sidebar-link menu-close search-slug=${item.slug}>${item.name}</a>`
         }).join("")}
             </div>`
 
@@ -57,15 +44,13 @@ const sidebar = async () => {
             sidebar.classList.toggle("active")
             siderbarBtn.classList.toggle("active")
             overlay.classList.toggle("active")
-            setCookie("search-type", "sidebar", 1)
-            // localStorage.setItem("search-type", "sidebar")
+
         })
     }
     const sidebarr = document.querySelector("[sidebar]")
     sidebarr.appendChild(sidebarInner)
     toggleSidebar(sidebarr)
 
-    await movieSearch()
 
 }
 

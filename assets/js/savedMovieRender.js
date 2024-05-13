@@ -1,6 +1,5 @@
 import { getCookie } from "../helper/cookies.js";
 import fetchAPI, { API_DETAIL_MOVIE, API_SEARCH_CATEGORY, authenUser } from "./api.js";
-import { handleToDetailPage } from "./global.js";
 
 let page = 1;
 let limit = 10;
@@ -45,7 +44,7 @@ const savedMovieRender = async () => {
                     <div class="meta-list">
                         <div class="card-badge">${data.movie.year}</div>
                     </div>
-                    <a href="./detail.html" class="card-btn" 
+                    <a href="./detail.html?${data.movie.slug}" class="card-btn" 
                     title=${data.movie.name}
                     movie-slug=${data.movie.slug}
                     movie-alike=${data.movie.category[0].slug}
@@ -98,7 +97,6 @@ const savedMovieRender = async () => {
 
     container.innerHTML += sidebarSearchList;
     await fetchMovie(); // Fetch initial data
-    await handleToDetailPage();
 
     const loadMoreBtn = container.querySelector("[sidebar-load-more-btn]");
     if (loadMoreBtn) {
