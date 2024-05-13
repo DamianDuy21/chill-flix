@@ -29,9 +29,9 @@ const headerBoxProfile = async () => {
     </div>
     <img src="./assets/images/setting-icon.png" width="24" height="24" alt="user-btn" class="rotate-able-icon">
     <div class="user-options">
-        <div class="user-option" index-page-btn>Trang chủ</div>
-        <div class="user-option" profile-page-btn>Hồ sơ</div>
-        <div class="user-option" saved-movie-page-btn>Phim đã lưu</div>
+        <a href="index.html" class="user-option" index-page-btn>Trang chủ</a>
+        <a href="profile.html" class="user-option" profile-page-btn>Hồ sơ</a>
+        <a href="savedMovie.html" class="user-option" saved-movie-page-btn>Phim đã lưu</a>
         <div class="user-option" sign-out-btn>Đăng xuất</div>
     </div>
 </button>

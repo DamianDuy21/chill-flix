@@ -63,9 +63,9 @@ ${getCookie("email") ? (`<button class="user-btn" user-btn>
     </div>
     <img src="./assets/images/setting-icon.png" width="24" height="24" alt="user-btn" class="rotate-able-icon">
     <div class="user-options">
-        <div class="user-option" index-page-btn>Trang chủ</div>
-        <div class="user-option" profile-page-btn>Hồ sơ</div>
-        <div class="user-option" saved-movie-page-btn>Phim đã lưu</div>
+        <a href="index.html" class="user-option" index-page-btn>Trang chủ</a>
+        <a href="profile.html" class="user-option" profile-page-btn>Hồ sơ</a>
+        <a href="savedMovie.html" class="user-option" saved-movie-page-btn>Phim đã lưu</a>
         <div class="user-option" sign-out-btn>Đăng xuất</div>
     </div>
     </button>
@@ -76,8 +76,8 @@ ${getCookie("email") ? (`<button class="user-btn" user-btn>
         </div>
         <img src="./assets/images/sign-in-icon.png" width="19" height="19" alt="user-btn" class="sign-in-icon grow-able-icon">
         <div class="user-options">
-            <div class="user-option" sign-up-page-btn>Đăng kí</div>
-            <div class="user-option" sign-in-page-btn>Đăng nhập</div>
+            <a href="signUp.html" class="user-option" sign-up-page-btn>Đăng kí</a>
+            <a href="signIn.html" class="user-option" sign-in-page-btn>Đăng nhập</a>
         </div>
         </button>
 
