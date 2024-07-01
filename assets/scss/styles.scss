@@ -668,9 +668,7 @@ body {
 
     }
 
-    &::-webkit-scrollbar-button {
-        // height: 16px;
-    }
+    &::-webkit-scrollbar-button {}
 
     &:hover,
     :focus {
@@ -1704,6 +1702,7 @@ body {
         .statistics-section {
             padding-top: 0;
             width: 50%;
+            // order: 2;
 
             .statistics-wrapper {
                 padding-top: 0;

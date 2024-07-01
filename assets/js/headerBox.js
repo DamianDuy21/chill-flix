@@ -33,7 +33,7 @@ const headerBox = async () => {
     const searchWrapper = `
     <a href="./index.html" class="logo">
     <!-- <img src="./assets/images/logo.svg" width="140" height="32" alt="Logo"> -->
-    <div style="font-size: 32px; font-weight: 600">Logo</div>
+    <div style="font-size: 32px; font-weight: 600">Chillflix</div>
 </a>
 <div class="${getCookie("email") ? ("search-box") : ("search-box search-box-un-authen")}" search-box>
     <form class="search-wrapper" onsubmit="return false;">
