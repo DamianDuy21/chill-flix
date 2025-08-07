@@ -1,0 +1,28 @@
+{
+  "name": "chill-flix-back-end",
+  "version": "1.0.0",
+  "description": "chill-flix-back-end",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "back-end"
+  ],
+  "author": "damianduy21",
+  "license": "ISC",
+  "dependencies": {
+    "api-query-params": "5.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "16.0.3",
+    "express": "4.18.2",
+    "mongoose": "6.7.2",
+    "mongoose-delete": "0.5.4",
+    "qs": "^6.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.20"
+  }
+}
